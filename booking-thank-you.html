@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Your Booking - TRACKS Adventure Safaris</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-brown: #7A3E1E;
+            --dark-brown: #4A2C1A;
+            --light-brown: #D4B59E;
+            --olive-green: #5A7D3E;
+            --dark-green: #3A5528;
+            --light-beige: #F8F4E8;
+            --gold: #C9A85E;
+            --gold-light: #E2C98D;
+            --white: #FFFFFF;
+            --black: #2C2C2C;
+            --gray: #666666;
+            --light-gray: #F0F0F0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--black);
+            background-color: var(--light-beige);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .thank-you-container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .thank-you-header {
+            background: linear-gradient(135deg, var(--dark-brown), var(--primary-brown));
+            color: var(--white);
+            padding: 50px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thank-you-header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB4PSIwIiB5PSIwIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHg9IjAiIHk9IjAiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+        }
+
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 50px;
+            color: var(--dark-brown);
+            position: relative;
+            z-index: 2;
+        }
+
+        .thank-you-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .thank-you-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .thank-you-content {
+            padding: 50px 40px;
+        }
+
+        .booking-summary {
+            background: var(--light-beige);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+            border: 2px solid var(--gold-light);
+        }
+
+        .booking-summary h3 {
+            color: var(--dark-brown);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gold);
+            font-size: 24px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .summary-value {
+            color: var(--dark-brown);
+            font-weight: 600;
+        }
+
+        .next-steps {
+            background: #f0f7f0;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid var(--olive-green);
+        }
+
+        .next-steps h3 {
+            color: var(--dark-green);
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding-left: 0;
+            text-align: left;
+        }
+
+        .next-steps li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--gray);
+        }
+
+        .next-steps li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--olive-green);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .contact-info {
+            background: var(--light-beige);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-top: 4px solid var(--gold);
+        }
+
+        .contact-info h3 {
+            color: var(--dark-brown);
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gray);
+        }
+
+        .contact-item i {
+            color: var(--gold);
+            font-size: 20px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--dark-brown);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(201, 168, 94, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--olive-green), var(--dark-green));
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 20px rgba(90, 125, 62, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .thank-you-header h1 {
+                font-size: 32px;
+            }
+            
+            .thank-you-content {
+                padding: 30px 20px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="thank-you-header">
+            <div class="checkmark">
+                <i class="fas fa-check"></i>
+            </div>
+            <h1>Thank You for Your Booking!</h1>
+            <p>Your safari adventure inquiry has been received. We're excited to help you plan your unforgettable journey.</p>
+        </div>
+        
+        <div class="thank-you-content">
+            <div id="bookingDetails">
+                <!-- Booking details will be loaded here by JavaScript -->
+                <p>Loading your booking details...</p>
+            </div>
+            
+            <div class="next-steps">
+                <h3>What Happens Next?</h3>
+                <ul>
+                    <li>Our safari specialist will contact you within <strong>24 hours</strong></li>
+                    <li>We'll confirm availability for your preferred dates</li>
+                    <li>You'll receive a detailed itinerary and invoice</li>
+                    <li>A <strong>25% deposit</strong> will be required to secure your booking</li>
+                    <li>Balance payment is due 60 days before departure</li>
+                </ul>
+            </div>
+            
+            <div class="contact-info">
+                <h3>Need Immediate Assistance?</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+267 72114790</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>tracksadventuresafaris2016@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Fri: 8AM-5PM (GMT+2)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="index.html" class="btn">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <a href="find-a-safari.html" class="btn btn-primary">
+                    <i class="fas fa-binoculars"></i> Explore More Safaris
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load booking details from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingDetails = document.getElementById('bookingDetails');
+            const storedData = localStorage.getItem('bookingFormData');
+            
+            if (storedData) {
+                const formData = JSON.parse(storedData);
+                
+                // Calculate deposit
+                const price = parseFloat(formData.packagePrice.replace('USD ', '').replace(',', ''));
+                const travelers = parseInt(formData.travelers);
+                const totalCost = price * travelers;
+                const deposit = totalCost * 0.25;
+                
+                // Create booking summary HTML
+                const summaryHTML = `
+                    <div class="booking-summary">
+                        <h3>Your Booking Summary</h3>
+                        <div class="summary-item">
+                            <span class="summary-label">Safari Package:</span>
+                            <span class="summary-value">${formData.packageName}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Duration:</span>
+                            <span class="summary-value">${formData.packageDuration}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Price per Person:</span>
+                            <span class="summary-value">${formData.packagePrice}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Number of Travelers:</span>
+                            <span class="summary-value">${formData.travelers}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Travel Dates:</span>
+                            <span class="summary-value">${formData.month} ${formData.year}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Total Package Cost:</span>
+                            <span class="summary-value">USD ${totalCost.toLocaleString()}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">25% Deposit Required:</span>
+                            <span class="summary-value" style="color: #4A2C1A; font-weight: 700;">USD ${deposit.toLocaleString()}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Contact Email:</span>
+                            <span class="summary-value">${formData.email}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Contact Phone:</span>
+                            <span class="summary-value">${formData.phone}</span>
+                        </div>
+                    </div>
+                `;
+                
+                bookingDetails.innerHTML = summaryHTML;
+                
+                // Clear the stored data after displaying it
+                localStorage.removeItem('bookingFormData');
+            } else {
+                bookingDetails.innerHTML = `
+                    <div class="booking-summary">
+                        <h3>Booking Details</h3>
+                        <p>No booking details found. If you just submitted a booking, please contact us directly.</p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
