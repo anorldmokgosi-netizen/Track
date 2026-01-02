@@ -788,6 +788,110 @@
             border-bottom: none;
         }
 
+        /* Season Pricing Cards */
+        .season-pricing {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px auto 50px;
+            max-width: 800px;
+        }
+
+        .season-card {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .season-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .season-header {
+            padding: 25px;
+            text-align: center;
+            color: white;
+        }
+
+        .season-header.lower {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        }
+
+        .season-header.green {
+            background: linear-gradient(135deg, var(--olive-green), var(--dark-green));
+        }
+
+        .season-header h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .season-price {
+            font-size: 42px;
+            font-weight: 700;
+        }
+
+        .season-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .season-months {
+            color: var(--dark-brown);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .season-features {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+
+        .season-features li {
+            padding: 8px 0;
+            color: var(--gray);
+            font-size: 14px;
+            position: relative;
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        .season-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--olive-green);
+            font-weight: bold;
+        }
+
+        .season-cta {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--light-beige);
+            border: none;
+            border-radius: 50px;
+            color: var(--dark-brown);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .season-cta:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
         /* ===== BOOKING CTA ===== */
         .booking-cta {
             background: linear-gradient(135deg, var(--dark-brown), var(--primary-brown));
@@ -1948,9 +2052,46 @@
                 <p style="text-align: center; max-width: 800px; margin: 0 auto; color: var(--gray);">Exceptional value for a 10-day classic predator corridor experience</p>
             </div>
             
+            <!-- Season Pricing Cards -->
+            <div class="season-pricing">
+                <div class="season-card">
+                    <div class="season-header lower">
+                        <h3>Lower Season</h3>
+                        <div class="season-price">USD 600</div>
+                    </div>
+                    <div class="season-content">
+                        <div class="season-months">May - October</div>
+                        <ul class="season-features">
+                            <li>Dry season wildlife viewing</li>
+                            <li>Animals congregate at waterholes</li>
+                            <li>Cooler daytime temperatures</li>
+                            <li>Excellent predator activity</li>
+                        </ul>
+                        <button class="season-cta" onclick="window.showBookingModal({name: 'Great Northern Predator Trail', price: 600, greenPrice: 700, duration: '9 Nights / 10 Days', groupSize: 'Max 7 Guests', difficulty: 'Moderate', bestTime: 'May - October', startPoint: 'Maun, Botswana', season: 'Lower Season'})">Book Lower Season</button>
+                    </div>
+                </div>
+                
+                <div class="season-card">
+                    <div class="season-header green">
+                        <h3>Green Season</h3>
+                        <div class="season-price">USD 700</div>
+                    </div>
+                    <div class="season-content">
+                        <div class="season-months">November - April</div>
+                        <ul class="season-features">
+                            <li>Lush landscapes and greenery</li>
+                            <li>Bird watching paradise</li>
+                            <li>Newborn wildlife sightings</li>
+                            <li>Fewer tourists, more exclusivity</li>
+                        </ul>
+                        <button class="season-cta" onclick="window.showBookingModal({name: 'Great Northern Predator Trail', price: 700, greenPrice: 600, duration: '9 Nights / 10 Days', groupSize: 'Max 7 Guests', difficulty: 'Moderate', bestTime: 'May - October', startPoint: 'Maun, Botswana', season: 'Green Season'})">Book Green Season</button>
+                    </div>
+                </div>
+            </div>
+            
             <div class="price-card">
                 <div class="price-amount">USD 700</div>
-                <div class="price-period">per person sharing · 9 Nights</div>
+                <div class="price-period">per person sharing · 9 Nights · Green Season (Nov-Apr)</div>
                 
                 <ul class="price-features">
                     <li>Maximum 7 guests for personalized experience</li>
@@ -1964,7 +2105,6 @@
                 </ul>
                 
                 <button class="btn btn-primary" id="bookPricingBtn" style="padding: 18px 45px; font-size: 17px; cursor: pointer;">Book This Safari</button>
-                <p style="margin-top: 20px; color: var(--gray); font-size: 14px;">Single supplement: USD 200 (if required)</p>
             </div>
         </div>
     </section>
@@ -2046,6 +2186,7 @@
                         <input type="hidden" name="safari_package" id="formPackageName" value="Great Northern Predator Trail">
                         <input type="hidden" name="package_duration" id="formPackageDuration" value="9 Nights / 10 Days">
                         <input type="hidden" name="package_price" id="formPackagePrice" value="USD 700">
+                        <input type="hidden" name="season_type" id="formSeasonType" value="Green Season">
                         
                         <!-- Personal Information -->
                         <div class="form-grid">
@@ -2107,7 +2248,7 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label class="form-label required">Preferred Month</label>
-                                <select name="preferred_month" class="form-select" required>
+                                <select name="preferred_month" class="form-select" id="preferredMonth" required>
                                     <option value="">Select Month</option>
                                     <option value="January">January</option>
                                     <option value="February">February</option>
@@ -2158,11 +2299,11 @@
                             </div>
                             <div class="deposit-row">
                                 <span>Total Package Cost:</span>
-                                <span id="calcTotalCost">USD 8,400</span>
+                                <span id="calcTotalCost">USD 1,400</span>
                             </div>
                             <div class="deposit-row total">
                                 <span>25% Deposit Required:</span>
-                                <span id="calcDepositAmount">USD 2,100</span>
+                                <span id="calcDepositAmount">USD 350</span>
                             </div>
                         </div>
                         
@@ -2194,6 +2335,7 @@
                         <h3 class="summary-title" id="packageName">Great Northern Predator Trail</h3>
                         <div class="summary-price" id="packagePrice">USD 700</div>
                         <div class="summary-price-label" id="packageDuration">per person (9 Nights / 10 Days)</div>
+                        <div class="summary-price-label" id="packageSeason" style="color: var(--olive-green); font-weight: 600;">Green Season (Nov-Apr)</div>
                     </div>
                     
                     <div class="package-details">
@@ -2253,7 +2395,7 @@
                     <!-- Deposit Required -->
                     <div class="deposit-required">
                         <div class="deposit-label">Deposit Required to Confirm</div>
-                        <div class="deposit-amount" id="depositRequired">USD 2,100</div>
+                        <div class="deposit-amount" id="depositRequired">USD 350</div>
                         <div class="deposit-note">25% of total package cost</div>
                     </div>
                 </div>
@@ -2366,12 +2508,15 @@
             const openBookingModal = function() {
                 window.showBookingModal({
                     name: "Great Northern Predator Trail",
-                    price: 700,
+                    price: 700, // Default to Green Season price
+                    greenPrice: 700,
+                    lowerPrice: 600,
                     duration: "9 Nights / 10 Days",
                     groupSize: "Max 7 Guests",
                     difficulty: "Moderate",
                     bestTime: "May - October",
-                    startPoint: "Maun, Botswana"
+                    startPoint: "Maun, Botswana",
+                    season: "Green Season"
                 });
             };
             
@@ -2408,7 +2553,7 @@
         const phoneInput = document.querySelector('input[name="phone"]');
         const countryInput = document.querySelector('input[name="country"]');
         const travelersSelect = document.querySelector('select[name="number_travelers"]');
-        const monthSelect = document.querySelector('select[name="preferred_month"]');
+        const monthSelect = document.getElementById('preferredMonth');
         const yearSelect = document.querySelector('select[name="preferred_year"]');
         const termsCheckbox = document.getElementById('termsAgreed');
         
@@ -2416,6 +2561,7 @@
         const packageName = document.getElementById('packageName');
         const packagePrice = document.getElementById('packagePrice');
         const packageDuration = document.getElementById('packageDuration');
+        const packageSeason = document.getElementById('packageSeason');
         const summaryDuration = document.getElementById('summaryDuration');
         const summaryGroupSize = document.getElementById('summaryGroupSize');
         const summaryDifficulty = document.getElementById('summaryDifficulty');
@@ -2433,17 +2579,47 @@
         const formPackageName = document.getElementById('formPackageName');
         const formPackageDuration = document.getElementById('formPackageDuration');
         const formPackagePrice = document.getElementById('formPackagePrice');
+        const formSeasonType = document.getElementById('formSeasonType');
         
         // Package data (will be set when modal is opened)
         let currentPackage = {
             name: "Great Northern Predator Trail",
-            price: 700,
+            price: 700, // Green Season price
+            greenPrice: 700,
+            lowerPrice: 600,
             duration: "9 Nights / 10 Days",
             groupSize: "Max 7 Guests",
             difficulty: "Moderate",
             bestTime: "May - October",
-            startPoint: "Maun, Botswana"
+            startPoint: "Maun, Botswana",
+            season: "Green Season"
         };
+        
+        // Determine season based on selected month
+        function getSeasonForMonth(month) {
+            const lowerMonths = ['May', 'June', 'July', 'August', 'September', 'October'];
+            const greenMonths = ['January', 'February', 'March', 'April', 'November', 'December'];
+            
+            if (lowerMonths.includes(month)) {
+                return {
+                    type: 'Lower Season',
+                    price: currentPackage.lowerPrice,
+                    seasonText: 'Lower Season (May-Oct)'
+                };
+            } else if (greenMonths.includes(month)) {
+                return {
+                    type: 'Green Season',
+                    price: currentPackage.greenPrice,
+                    seasonText: 'Green Season (Nov-Apr)'
+                };
+            } else {
+                return {
+                    type: 'Green Season',
+                    price: currentPackage.greenPrice,
+                    seasonText: 'Green Season (Nov-Apr)'
+                };
+            }
+        }
         
         // Initialize modal with package data
         function initializeModal(packageData) {
@@ -2451,10 +2627,15 @@
                 currentPackage = packageData;
             }
             
+            // Determine initial season based on current month or default to green
+            const currentMonth = new Date().toLocaleString('en-US', { month: 'long' });
+            const seasonInfo = getSeasonForMonth(currentMonth);
+            
             // Update displayed package info
             packageName.textContent = currentPackage.name;
-            packagePrice.textContent = `USD ${currentPackage.price.toLocaleString()}`;
+            packagePrice.textContent = `USD ${seasonInfo.price.toLocaleString()}`;
             packageDuration.textContent = `per person (${currentPackage.duration})`;
+            packageSeason.textContent = seasonInfo.seasonText;
             summaryDuration.textContent = currentPackage.duration;
             summaryGroupSize.textContent = currentPackage.groupSize;
             summaryDifficulty.textContent = currentPackage.difficulty;
@@ -2464,7 +2645,8 @@
             // Update hidden form fields
             formPackageName.value = currentPackage.name;
             formPackageDuration.value = currentPackage.duration;
-            formPackagePrice.value = `USD ${currentPackage.price.toLocaleString()}`;
+            formPackagePrice.value = `USD ${seasonInfo.price.toLocaleString()}`;
+            formSeasonType.value = seasonInfo.type;
             
             // Update modal title
             const modalTitle = document.getElementById('modalTitle');
@@ -2481,7 +2663,20 @@
             if (!travelersSelect) return;
             
             const travelers = parseInt(travelersSelect.value) || 2;
-            const pricePerPerson = currentPackage.price;
+            const selectedMonth = monthSelect ? monthSelect.value : '';
+            
+            // Determine price based on selected month
+            let pricePerPerson = currentPackage.greenPrice; // Default to green
+            let seasonType = "Green Season";
+            let seasonText = "Green Season (Nov-Apr)";
+            
+            if (selectedMonth && selectedMonth !== 'Flexible') {
+                const seasonInfo = getSeasonForMonth(selectedMonth);
+                pricePerPerson = seasonInfo.price;
+                seasonType = seasonInfo.type;
+                seasonText = seasonInfo.seasonText;
+            }
+            
             const totalCost = pricePerPerson * travelers;
             const deposit = totalCost * 0.25;
             
@@ -2491,6 +2686,12 @@
             if (calcTotalCost) calcTotalCost.textContent = `USD ${totalCost.toLocaleString()}`;
             if (calcDepositAmount) calcDepositAmount.textContent = `USD ${deposit.toLocaleString()}`;
             if (depositRequired) depositRequired.textContent = `USD ${deposit.toLocaleString()}`;
+            
+            // Update package summary
+            if (packagePrice) packagePrice.textContent = `USD ${pricePerPerson.toLocaleString()}`;
+            if (packageSeason) packageSeason.textContent = seasonText;
+            if (formPackagePrice) formPackagePrice.value = `USD ${pricePerPerson.toLocaleString()}`;
+            if (formSeasonType) formSeasonType.value = seasonType;
         }
         
         // Show modal
@@ -2615,9 +2816,13 @@
             }
         });
         
-        // Calculate deposit when travelers change
+        // Calculate deposit when travelers or month changes
         if (travelersSelect) {
             travelersSelect.addEventListener('change', calculateDeposit);
+        }
+        
+        if (monthSelect) {
+            monthSelect.addEventListener('change', calculateDeposit);
         }
         
         // Form submission
@@ -2647,7 +2852,8 @@
                     specialRequests: document.querySelector('textarea[name="special_requests"]').value,
                     packageName: document.getElementById('formPackageName').value,
                     packageDuration: document.getElementById('formPackageDuration').value,
-                    packagePrice: document.getElementById('formPackagePrice').value
+                    packagePrice: document.getElementById('formPackagePrice').value,
+                    seasonType: document.getElementById('formSeasonType').value
                 };
                 
                 // Save form data to localStorage
