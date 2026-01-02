@@ -28,6 +28,9 @@
             --light-beige: #F8F4E8;
             --gold: #C9A85E;
             --gold-light: #E2C98D;
+            --green-season: #2E7D32;
+            --green-season-light: #4CAF50;
+            --lower-season: #FF9800;
             --white: #FFFFFF;
             --black: #2C2C2C;
             --gray: #666666;
@@ -830,88 +833,108 @@
             color: #E74C3C;
         }
 
-        /* ===== PRICING ===== */
+        /* ===== UPDATED PRICING ===== */
         .pricing {
             background-color: var(--white);
             text-align: center;
         }
 
-        .price-card {
-            background: linear-gradient(135deg, var(--light-beige), #f0e9d8);
-            padding: 50px;
-            border-radius: 15px;
+        .price-container {
             max-width: 600px;
-            margin: 0 auto;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
+            margin: 0 auto 40px;
         }
 
-        .price-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--gold), var(--olive-green));
+        .price-season {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            transition: var(--transition);
+            text-align: left;
         }
 
-        /* Shimmer effect for the price card */
-        .price-card {
-            position: relative;
-            overflow: hidden;
+        .price-season:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
-        
-        .price-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.1) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(30deg);
-            animation: shimmer 3s infinite;
+
+        .price-green-season {
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(76, 175, 80, 0.05));
+            border-left: 4px solid var(--green-season);
         }
-        
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%) rotate(30deg);
-            }
-            100% {
-                transform: translateX(100%) rotate(30deg);
-            }
+
+        .price-lower-season {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.05));
+            border-left: 4px solid var(--lower-season);
+        }
+
+        .season-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            width: 40px;
+            text-align: center;
+        }
+
+        .season-info {
+            flex: 1;
+        }
+
+        .season-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .price-green-season .season-label {
+            color: var(--green-season);
+        }
+
+        .price-lower-season .season-label {
+            color: var(--lower-season);
         }
 
         .price-amount {
-            font-size: 56px;
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
             font-weight: 700;
-            color: var(--dark-brown);
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 5px;
         }
 
-        .price-period {
+        .price-green-season .price-amount {
+            color: var(--green-season);
+        }
+
+        .price-lower-season .price-amount {
+            color: var(--lower-season);
+        }
+
+        .per-person {
+            font-size: 14px;
             color: var(--gray);
-            font-size: 18px;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
+            margin-left: 5px;
+            font-weight: 400;
+        }
+
+        .season-period {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 5px;
         }
 
         .price-features {
             list-style: none;
             padding-left: 0;
             margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
+            background: var(--light-beige);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            margin: 0 auto 40px;
         }
 
         .price-features li {
@@ -1087,7 +1110,7 @@
             z-index: 1;
         }
 
-        /* ===== BOOKING MODAL STYLES ===== */
+        /* ===== UPDATED BOOKING MODAL STYLES ===== */
         .booking-modal-overlay {
             position: fixed;
             top: 0;
@@ -1254,6 +1277,82 @@
             border-color: #7A3E1E;
         }
         
+        /* Seasonal Price Selection */
+        .season-price-selection {
+            background: #f0f7f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .season-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .season-option {
+            flex: 1;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: white;
+        }
+        
+        .season-option:hover {
+            border-color: #7A3E1E;
+            transform: translateY(-2px);
+        }
+        
+        .season-option.selected {
+            border-color: #5A7D3E;
+            background: #f0f7f0;
+        }
+        
+        .season-option.green {
+            border-left: 4px solid var(--green-season);
+        }
+        
+        .season-option.lower {
+            border-left: 4px solid var(--lower-season);
+        }
+        
+        .season-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .season-option.green .season-name {
+            color: var(--green-season);
+        }
+        
+        .season-option.lower .season-name {
+            color: var(--lower-season);
+        }
+        
+        .season-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+        
+        .season-option.green .season-price {
+            color: var(--green-season);
+        }
+        
+        .season-option.lower .season-price {
+            color: var(--lower-season);
+        }
+        
         .deposit-calc {
             background: #f0f7f0;
             padding: 20px;
@@ -1378,16 +1477,64 @@
             margin-bottom: 15px;
         }
         
-        .summary-price {
-            font-size: 36px;
-            color: #C9A85E;
-            font-weight: 700;
-            margin-bottom: 5px;
+        /* Updated summary pricing */
+        .summary-pricing {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+        
+        .summary-price-option {
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .summary-price-option.green {
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(76, 175, 80, 0.05));
+            border-left: 3px solid var(--green-season);
+        }
+        
+        .summary-price-option.lower {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.05));
+            border-left: 3px solid var(--lower-season);
         }
         
         .summary-price-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .summary-price-option.green .summary-price-label {
+            color: var(--green-season);
+        }
+        
+        .summary-price-option.lower .summary-price-label {
+            color: var(--lower-season);
+        }
+        
+        .summary-price-amount {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+        
+        .summary-price-option.green .summary-price-amount {
+            color: var(--green-season);
+        }
+        
+        .summary-price-option.lower .summary-price-amount {
+            color: var(--lower-season);
+        }
+        
+        .summary-price-note {
+            font-size: 11px;
             color: #666;
-            font-size: 14px;
         }
         
         .package-details {
@@ -1492,10 +1639,6 @@
                 font-size: 18px;
             }
             
-            .price-amount {
-                font-size: 42px;
-            }
-            
             .overview-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -1517,6 +1660,11 @@
             .package-summary {
                 border-left: none;
                 border-top: 1px solid #eee;
+            }
+            
+            .summary-pricing {
+                flex-direction: column;
+                align-items: center;
             }
         }
 
@@ -1592,10 +1740,6 @@
                 font-size: 36px;
             }
             
-            .price-card {
-                padding: 30px 20px;
-            }
-            
             .overview-image {
                 height: 300px;
             }
@@ -1612,6 +1756,10 @@
             
             .form-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .season-options {
+                flex-direction: column;
             }
             
             .form-buttons {
@@ -1652,7 +1800,7 @@
             }
             
             .price-amount {
-                font-size: 36px;
+                font-size: 26px;
             }
             
             .day-header {
@@ -1663,6 +1811,15 @@
             
             .inclusion-list {
                 padding: 25px 20px;
+            }
+            
+            .season-price-selection {
+                padding: 15px;
+            }
+            
+            .summary-price-option {
+                min-width: 100px;
+                padding: 8px 10px;
             }
         }
     </style>
@@ -1716,7 +1873,8 @@
                 <div class="safari-badge">6 Nights / 7 Days</div>
                 <div class="safari-badge">Max 8 Guests</div>
                 <div class="safari-badge">Water-Based Safari</div>
-                <div class="safari-badge">From USD 1,200 per person</div>
+                <!-- UPDATED: Changed from USD 1,200 to match homepage -->
+                <div class="safari-badge">From USD 600 per person</div>
             </div>
         </div>
     </section>
@@ -2178,7 +2336,7 @@
         </div>
     </section>
 
-    <!-- Pricing -->
+    <!-- UPDATED: Pricing Section with Dual Pricing -->
     <section class="pricing">
         <div class="container">
             <div class="section-title">
@@ -2186,23 +2344,37 @@
                 <p style="text-align: center; max-width: 800px; margin: 0 auto; color: var(--gray);">Luxury water safari experience at exceptional value</p>
             </div>
             
-            <div class="price-card">
-                <div class="price-amount">USD 1,200</div>
-                <div class="price-period">per person sharing · 6 Nights</div>
-                
-                <ul class="price-features">
-                    <li>6 Nights luxury delta island camps</li>
-                    <li>Maximum 8 guests for intimate experience</li>
-                    <li>All meals, premium drinks, and snacks</li>
-                    <li>Private scenic aircraft transfers within delta</li>
-                    <li>All water activities (mokoro and motorboat)</li>
-                    <li>Land game drives in specialized 4x4 vehicles</li>
-                    <li>Professional guiding and full camp service</li>
-                    <li>All national park and concession fees</li>
-                </ul>
-                
-                <button class="btn btn-primary" id="bookExpeditionBtn" style="padding: 18px 45px; font-size: 17px; cursor: pointer;">Book This Expedition</button>
+            <div class="price-container">
+                <div class="price-season price-green-season">
+                    <span class="season-icon">🌿</span>
+                    <div class="season-info">
+                        <span class="season-label">Green Season (Peak)</span>
+                        <div class="price-amount">USD 700 <span class="per-person">per person</span></div>
+                        <div class="season-period">Best time: May - October</div>
+                    </div>
+                </div>
+                <div class="price-season price-lower-season">
+                    <span class="season-icon">☀️</span>
+                    <div class="season-info">
+                        <span class="season-label">Lower Season</span>
+                        <div class="price-amount">USD 600 <span class="per-person">per person</span></div>
+                        <div class="season-period">Other months (excluding peak season)</div>
+                    </div>
+                </div>
             </div>
+            
+            <ul class="price-features">
+                <li>6 Nights luxury delta island camps</li>
+                <li>Maximum 8 guests for intimate experience</li>
+                <li>All meals, premium drinks, and snacks</li>
+                <li>Private scenic aircraft transfers within delta</li>
+                <li>All water activities (mokoro and motorboat)</li>
+                <li>Land game drives in specialized 4x4 vehicles</li>
+                <li>Professional guiding and full camp service</li>
+                <li>All national park and concession fees</li>
+            </ul>
+            
+            <button class="btn btn-primary" id="bookExpeditionBtn" style="padding: 18px 45px; font-size: 17px; cursor: pointer;">Book This Expedition</button>
         </div>
     </section>
 
@@ -2260,7 +2432,7 @@
         </div>
     </footer>
 
-    <!-- BOOKING MODAL - DIRECTLY INCLUDED -->
+    <!-- UPDATED: BOOKING MODAL with Seasonal Pricing -->
     <div class="booking-modal-overlay" id="bookingModal" style="display: none;">
         <div class="booking-modal">
             <!-- Header -->
@@ -2282,7 +2454,8 @@
                         <!-- Hidden fields for package details -->
                         <input type="hidden" name="safari_package" id="formPackageName" value="Safari Package">
                         <input type="hidden" name="package_duration" id="formPackageDuration" value="6 Nights / 7 Days">
-                        <input type="hidden" name="package_price" id="formPackagePrice" value="USD 1,200">
+                        <input type="hidden" name="selected_season" id="formSelectedSeason" value="green">
+                        <input type="hidden" name="package_price" id="formPackagePrice" value="700">
                         
                         <!-- Personal Information -->
                         <div class="form-grid">
@@ -2338,6 +2511,23 @@
                             </div>
                         </div>
                         
+                        <!-- Seasonal Price Selection -->
+                        <div class="season-price-selection">
+                            <h4 style="color: #4A2C1A; margin-bottom: 15px; font-size: 16px;">Select Your Season & Price</h4>
+                            <div class="season-options">
+                                <div class="season-option green selected" data-season="green" data-price="700">
+                                    <div class="season-name">🌿 Green Season</div>
+                                    <div class="season-price">USD 700</div>
+                                    <div style="font-size: 12px; color: #666; margin-top: 5px;">per person</div>
+                                </div>
+                                <div class="season-option lower" data-season="lower" data-price="600">
+                                    <div class="season-name">☀️ Lower Season</div>
+                                    <div class="season-price">USD 600</div>
+                                    <div style="font-size: 12px; color: #666; margin-top: 5px;">per person</div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <!-- Travel Dates -->
                         <h3 class="form-section-title" style="margin-top: 30px;">Travel Dates</h3>
                         
@@ -2386,8 +2576,12 @@
                         <div class="deposit-calc">
                             <h4 style="color: #4A2C1A; margin-bottom: 15px; font-size: 16px;">Deposit Calculation (25% Required)</h4>
                             <div class="deposit-row">
-                                <span>Package Price per Person:</span>
-                                <span id="calcPricePerPerson">USD 1,200</span>
+                                <span>Season Selected:</span>
+                                <span id="calcSeason">Green Season</span>
+                            </div>
+                            <div class="deposit-row">
+                                <span>Price per Person:</span>
+                                <span id="calcPricePerPerson">USD 700</span>
                             </div>
                             <div class="deposit-row">
                                 <span>Number of Travelers:</span>
@@ -2395,11 +2589,11 @@
                             </div>
                             <div class="deposit-row">
                                 <span>Total Package Cost:</span>
-                                <span id="calcTotalCost">USD 2,400</span>
+                                <span id="calcTotalCost">USD 1,400</span>
                             </div>
                             <div class="deposit-row total">
                                 <span>25% Deposit Required:</span>
-                                <span id="calcDepositAmount">USD 600</span>
+                                <span id="calcDepositAmount">USD 350</span>
                             </div>
                         </div>
                         
@@ -2429,8 +2623,22 @@
                 <div class="package-summary">
                     <div class="summary-header">
                         <h3 class="summary-title" id="packageName">Emerald Waterways Expedition</h3>
-                        <div class="summary-price" id="packagePrice">USD 1,200</div>
-                        <div class="summary-price-label" id="packageDuration">per person (6 Nights / 7 Days)</div>
+                        
+                        <!-- Updated Summary Pricing -->
+                        <div class="summary-pricing">
+                            <div class="summary-price-option green">
+                                <div class="summary-price-label">Green Season</div>
+                                <div class="summary-price-amount">USD 700</div>
+                                <div class="summary-price-note">per person</div>
+                            </div>
+                            <div class="summary-price-option lower">
+                                <div class="summary-price-label">Lower Season</div>
+                                <div class="summary-price-amount">USD 600</div>
+                                <div class="summary-price-note">per person</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-price-label" id="packageDuration">6 Nights / 7 Days</div>
                     </div>
                     
                     <div class="package-details">
@@ -2490,7 +2698,7 @@
                     <!-- Deposit Required -->
                     <div class="deposit-required">
                         <div class="deposit-label">Deposit Required to Confirm</div>
-                        <div class="deposit-amount" id="depositRequired">USD 600</div>
+                        <div class="deposit-amount" id="depositRequired">USD 350</div>
                         <div class="deposit-note">25% of total package cost</div>
                     </div>
                 </div>
@@ -2560,7 +2768,468 @@
                 });
             });
 
-            // Booking buttons
+              <script>
+        // ===== EMERALD PAGE JAVASCRIPT =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (mainNav.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+
+                // Close mobile menu when clicking a link
+                document.querySelectorAll('nav a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                        mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                    });
+                });
+            }
+
+            // Itinerary tabs
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = this.getAttribute('data-tab');
+                    const tabContent = document.getElementById(tabId);
+                    if (tabContent) {
+                        tabContent.classList.add('active');
+                    }
+                });
+            });
+
+            // ===== BOOKING MODAL JAVASCRIPT =====
+            // DOM Elements
+            const bookingModal = document.getElementById('bookingModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const bookingForm = document.getElementById('bookingForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const submitSpinner = document.getElementById('submitSpinner');
+            
+            // Seasonal pricing elements
+            const seasonOptions = document.querySelectorAll('.season-option');
+            const formSelectedSeason = document.getElementById('formSelectedSeason');
+            const formPackagePrice = document.getElementById('formPackagePrice');
+            
+            // Form elements
+            const firstNameInput = document.querySelector('input[name="first_name"]');
+            const lastNameInput = document.querySelector('input[name="last_name"]');
+            const emailInput = document.querySelector('input[name="email"]');
+            const phoneInput = document.querySelector('input[name="phone"]');
+            const countryInput = document.querySelector('input[name="country"]');
+            const travelersSelect = document.querySelector('select[name="number_travelers"]');
+            const monthSelect = document.querySelector('select[name="preferred_month"]');
+            const yearSelect = document.querySelector('select[name="preferred_year"]');
+            const termsCheckbox = document.getElementById('termsAgreed');
+            
+            // Package details elements
+            const packageName = document.getElementById('packageName');
+            const packageDuration = document.getElementById('packageDuration');
+            const summaryDuration = document.getElementById('summaryDuration');
+            const summaryGroupSize = document.getElementById('summaryGroupSize');
+            const summaryDifficulty = document.getElementById('summaryDifficulty');
+            const summaryBestTime = document.getElementById('summaryBestTime');
+            const summaryStartPoint = document.getElementById('summaryStartPoint');
+            
+            // Deposit calculation elements
+            const calcSeason = document.getElementById('calcSeason');
+            const calcPricePerPerson = document.getElementById('calcPricePerPerson');
+            const calcTravelersCount = document.getElementById('calcTravelersCount');
+            const calcTotalCost = document.getElementById('calcTotalCost');
+            const calcDepositAmount = document.getElementById('calcDepositAmount');
+            const depositRequired = document.getElementById('depositRequired');
+            
+            // Hidden form fields
+            const formPackageName = document.getElementById('formPackageName');
+            const formPackageDuration = document.getElementById('formPackageDuration');
+            
+            // Package data
+            let currentPackage = {
+                name: "Emerald Waterways Expedition",
+                priceGreen: 700,
+                priceLower: 600,
+                duration: "6 Nights / 7 Days",
+                groupSize: "Max 8 Guests",
+                difficulty: "Easy to Moderate",
+                bestTime: "May - October",
+                startPoint: "Maun, Botswana"
+            };
+            
+            // Initialize modal with package data
+            function initializeModal(packageData) {
+                if (packageData) {
+                    currentPackage = packageData;
+                }
+                
+                // Update displayed package info
+                packageName.textContent = currentPackage.name;
+                packageDuration.textContent = `per person (${currentPackage.duration})`;
+                summaryDuration.textContent = currentPackage.duration;
+                summaryGroupSize.textContent = currentPackage.groupSize;
+                summaryDifficulty.textContent = currentPackage.difficulty;
+                summaryBestTime.textContent = currentPackage.bestTime;
+                summaryStartPoint.textContent = currentPackage.startPoint;
+                
+                // Update hidden form fields
+                formPackageName.value = currentPackage.name;
+                formPackageDuration.value = currentPackage.duration;
+                
+                // Update modal title
+                const modalTitle = document.getElementById('modalTitle');
+                const modalSubtitle = document.getElementById('modalSubtitle');
+                if (modalTitle) modalTitle.textContent = `Book ${currentPackage.name}`;
+                if (modalSubtitle) modalSubtitle.textContent = `Complete your booking for the ${currentPackage.name} safari`;
+                
+                // Initialize seasonal pricing
+                initializeSeasonalPricing();
+                
+                // Calculate deposit
+                calculateDeposit();
+            }
+            
+            // Initialize seasonal pricing
+            function initializeSeasonalPricing() {
+                // Set default to green season
+                formSelectedSeason.value = 'green';
+                formPackagePrice.value = currentPackage.priceGreen;
+                
+                // Update season options
+                seasonOptions.forEach(option => {
+                    const season = option.getAttribute('data-season');
+                    const price = season === 'green' ? currentPackage.priceGreen : currentPackage.priceLower;
+                    option.setAttribute('data-price', price);
+                    
+                    // Update price display
+                    const priceElement = option.querySelector('.season-price');
+                    if (priceElement) {
+                        priceElement.textContent = `USD ${price}`;
+                    }
+                    
+                    // Set initial selection
+                    if (season === 'green') {
+                        option.classList.add('selected');
+                        calcSeason.textContent = 'Green Season';
+                    } else {
+                        option.classList.remove('selected');
+                    }
+                });
+            }
+            
+            // Calculate deposit (25% of total)
+            function calculateDeposit() {
+                if (!travelersSelect) return;
+                
+                // Get selected season and price
+                const selectedSeason = formSelectedSeason.value;
+                const pricePerPerson = selectedSeason === 'green' ? currentPackage.priceGreen : currentPackage.priceLower;
+                const travelers = parseInt(travelersSelect.value) || 2;
+                const totalCost = pricePerPerson * travelers;
+                const deposit = totalCost * 0.25;
+                
+                // Update calculation display
+                if (calcSeason) {
+                    calcSeason.textContent = selectedSeason === 'green' ? 'Green Season' : 'Lower Season';
+                }
+                if (calcPricePerPerson) calcPricePerPerson.textContent = `USD ${pricePerPerson.toLocaleString()}`;
+                if (calcTravelersCount) calcTravelersCount.textContent = travelers;
+                if (calcTotalCost) calcTotalCost.textContent = `USD ${totalCost.toLocaleString()}`;
+                if (calcDepositAmount) calcDepositAmount.textContent = `USD ${deposit.toLocaleString()}`;
+                if (depositRequired) depositRequired.textContent = `USD ${deposit.toLocaleString()}`;
+            }
+            
+            // Show modal
+            window.showBookingModal = function(packageData = null) {
+                initializeModal(packageData);
+                bookingModal.style.display = 'flex';
+                setTimeout(() => {
+                    bookingModal.style.opacity = '1';
+                }, 10);
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            };
+            
+            // Hide modal
+            function hideBookingModal() {
+                bookingModal.style.opacity = '0';
+                setTimeout(() => {
+                    bookingModal.style.display = 'none';
+                    document.body.style.overflow = ''; // Restore scrolling
+                }, 300);
+            }
+            
+            // Form validation
+            function validateForm() {
+                let isValid = true;
+                
+                // Clear previous errors
+                document.querySelectorAll('.error-message').forEach(error => {
+                    error.style.display = 'none';
+                });
+                document.querySelectorAll('.form-input.error, .form-select.error').forEach(input => {
+                    input.classList.remove('error');
+                });
+                
+                // Validate first name
+                if (!firstNameInput.value.trim()) {
+                    document.getElementById('firstNameError').style.display = 'block';
+                    firstNameInput.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate last name
+                if (!lastNameInput.value.trim()) {
+                    document.getElementById('lastNameError').style.display = 'block';
+                    lastNameInput.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    emailInput.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate phone
+                if (!phoneInput.value.trim()) {
+                    document.getElementById('phoneError').style.display = 'block';
+                    phoneInput.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate country
+                if (!countryInput.value.trim()) {
+                    document.getElementById('countryError').style.display = 'block';
+                    countryInput.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate travelers
+                if (!travelersSelect.value) {
+                    document.getElementById('travelersError').style.display = 'block';
+                    travelersSelect.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate month
+                if (!monthSelect.value) {
+                    document.getElementById('monthError').style.display = 'block';
+                    monthSelect.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate year
+                if (!yearSelect.value) {
+                    document.getElementById('yearError').style.display = 'block';
+                    yearSelect.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate terms
+                if (!termsCheckbox.checked) {
+                    document.getElementById('termsError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            // Event Listeners for modal
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', hideBookingModal);
+            }
+            
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', hideBookingModal);
+            }
+            
+            // Close modal when clicking outside
+            if (bookingModal) {
+                bookingModal.addEventListener('click', function(e) {
+                    if (e.target === bookingModal) {
+                        hideBookingModal();
+                    }
+                });
+            }
+            
+            // Escape key closes modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && bookingModal.style.display === 'flex') {
+                    hideBookingModal();
+                }
+            });
+            
+            // Seasonal option selection
+            if (seasonOptions) {
+                seasonOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        // Remove selected class from all options
+                        seasonOptions.forEach(opt => opt.classList.remove('selected'));
+                        
+                        // Add selected class to clicked option
+                        this.classList.add('selected');
+                        
+                        // Update form values
+                        const season = this.getAttribute('data-season');
+                        const price = this.getAttribute('data-price');
+                        
+                        formSelectedSeason.value = season;
+                        formPackagePrice.value = price;
+                        
+                        // Update season display in calculation
+                        if (calcSeason) {
+                            calcSeason.textContent = season === 'green' ? 'Green Season' : 'Lower Season';
+                        }
+                        
+                        // Recalculate deposit
+                        calculateDeposit();
+                    });
+                });
+            }
+            
+            // Calculate deposit when travelers change
+            if (travelersSelect) {
+                travelersSelect.addEventListener('change', calculateDeposit);
+            }
+            
+            // Form submission
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (!validateForm()) {
+                        return;
+                    }
+                    
+                    // Show loading state
+                    submitBtn.disabled = true;
+                    submitSpinner.style.display = 'block';
+                    submitBtn.innerHTML = '<div class="loading-spinner" id="submitSpinner"></div> Processing...';
+                    
+                    // Collect form data
+                    const formData = {
+                        firstName: document.querySelector('input[name="first_name"]').value,
+                        lastName: document.querySelector('input[name="last_name"]').value,
+                        email: document.querySelector('input[name="email"]').value,
+                        phone: document.querySelector('input[name="phone"]').value,
+                        country: document.querySelector('input[name="country"]').value,
+                        travelers: document.querySelector('select[name="number_travelers"]').value,
+                        season: document.getElementById('formSelectedSeason').value,
+                        month: document.querySelector('select[name="preferred_month"]').value,
+                        year: document.querySelector('select[name="preferred_year"]').value,
+                        specialRequests: document.querySelector('textarea[name="special_requests"]').value,
+                        packageName: document.getElementById('formPackageName').value,
+                        packageDuration: document.getElementById('formPackageDuration').value,
+                        packagePrice: document.getElementById('formPackagePrice').value
+                    };
+                    
+                    // Save form data to localStorage
+                    localStorage.setItem('bookingFormData', JSON.stringify(formData));
+                    
+                    // Redirect to thank you page after a short delay
+                    setTimeout(() => {
+                        window.location.href = 'booking-thank-you.html';
+                    }, 1500);
+                });
+            }
+            
+            // Real-time validation
+            function validateField(e) {
+                const field = e.target;
+                const fieldName = field.name || field.id;
+                
+                // Clear error for this field
+                const errorId = fieldName === 'terms_agreed' ? 'termsError' : fieldName + 'Error';
+                const errorElement = document.getElementById(errorId);
+                if (errorElement) {
+                    errorElement.style.display = 'none';
+                    if (field.classList) {
+                        field.classList.remove('error');
+                    }
+                }
+                
+                // Re-validate this field
+                if (fieldName === 'first_name' && !field.value.trim()) {
+                    document.getElementById('firstNameError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'last_name' && !field.value.trim()) {
+                    document.getElementById('lastNameError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'email') {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!field.value.trim() || !emailRegex.test(field.value)) {
+                        document.getElementById('emailError').style.display = 'block';
+                        field.classList.add('error');
+                    }
+                } else if (fieldName === 'phone' && !field.value.trim()) {
+                    document.getElementById('phoneError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'country' && !field.value.trim()) {
+                    document.getElementById('countryError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'number_travelers' && !field.value) {
+                    document.getElementById('travelersError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'preferred_month' && !field.value) {
+                    document.getElementById('monthError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'preferred_year' && !field.value) {
+                    document.getElementById('yearError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'terms_agreed' && !field.checked) {
+                    document.getElementById('termsError').style.display = 'block';
+                }
+            }
+            
+            // Attach validation to form fields
+            if (firstNameInput) firstNameInput.addEventListener('blur', validateField);
+            if (lastNameInput) lastNameInput.addEventListener('blur', validateField);
+            if (emailInput) emailInput.addEventListener('blur', validateField);
+            if (phoneInput) phoneInput.addEventListener('blur', validateField);
+            if (countryInput) countryInput.addEventListener('blur', validateField);
+            if (travelersSelect) travelersSelect.addEventListener('change', validateField);
+            if (monthSelect) monthSelect.addEventListener('change', validateField);
+            if (yearSelect) yearSelect.addEventListener('change', validateField);
+            if (termsCheckbox) termsCheckbox.addEventListener('change', validateField);
+            
+            // Initialize with default package
+            initializeModal();
+            
+            // ===== BOOKING BUTTONS =====
+            // Now set up the booking buttons AFTER all other initialization
             const bookExpeditionBtn = document.getElementById('bookExpeditionBtn');
             const beginWaterJourneyBtn = document.getElementById('beginWaterJourneyBtn');
             
@@ -2568,7 +3237,8 @@
                 bookExpeditionBtn.addEventListener('click', function() {
                     window.showBookingModal({
                         name: "Emerald Waterways Expedition",
-                        price: 1200,
+                        priceGreen: 700,
+                        priceLower: 600,
                         duration: "6 Nights / 7 Days",
                         groupSize: "Max 8 Guests",
                         difficulty: "Easy to Moderate",
@@ -2582,7 +3252,24 @@
                 beginWaterJourneyBtn.addEventListener('click', function() {
                     window.showBookingModal({
                         name: "Emerald Waterways Expedition",
-                        price: 1200,
+                        priceGreen: 700,
+                        priceLower: 600,
+                        duration: "6 Nights / 7 Days",
+                        groupSize: "Max 8 Guests",
+                        difficulty: "Easy to Moderate",
+                        bestTime: "May - October",
+                        startPoint: "Maun, Botswana"
+                    });
+                });
+            }
+        });
+    </script>
+            
+            if (beginWaterJourneyBtn) {
+                beginWaterJourneyBtn.addEventListener('click', function() {
+                    window.showBookingModal({
+                        name: "Emerald Waterways Expedition",
+                        price: 700,
                         duration: "6 Nights / 7 Days",
                         groupSize: "Max 8 Guests",
                         difficulty: "Easy to Moderate",
@@ -2593,7 +3280,7 @@
             }
         });
 
-        // ===== BOOKING MODAL JAVASCRIPT =====
+        // ===== UPDATED BOOKING MODAL JAVASCRIPT =====
         // DOM Elements
         const bookingModal = document.getElementById('bookingModal');
         const closeModalBtn = document.getElementById('closeModal');
@@ -2601,6 +3288,11 @@
         const bookingForm = document.getElementById('bookingForm');
         const submitBtn = document.getElementById('submitBtn');
         const submitSpinner = document.getElementById('submitSpinner');
+        
+        // Seasonal pricing elements
+        const seasonOptions = document.querySelectorAll('.season-option');
+        const formSelectedSeason = document.getElementById('formSelectedSeason');
+        const formPackagePrice = document.getElementById('formPackagePrice');
         
         // Form elements
         const firstNameInput = document.querySelector('input[name="first_name"]');
@@ -2615,7 +3307,6 @@
         
         // Package details elements
         const packageName = document.getElementById('packageName');
-        const packagePrice = document.getElementById('packagePrice');
         const packageDuration = document.getElementById('packageDuration');
         const summaryDuration = document.getElementById('summaryDuration');
         const summaryGroupSize = document.getElementById('summaryGroupSize');
@@ -2624,6 +3315,7 @@
         const summaryStartPoint = document.getElementById('summaryStartPoint');
         
         // Deposit calculation elements
+        const calcSeason = document.getElementById('calcSeason');
         const calcPricePerPerson = document.getElementById('calcPricePerPerson');
         const calcTravelersCount = document.getElementById('calcTravelersCount');
         const calcTotalCost = document.getElementById('calcTotalCost');
@@ -2633,12 +3325,12 @@
         // Hidden form fields
         const formPackageName = document.getElementById('formPackageName');
         const formPackageDuration = document.getElementById('formPackageDuration');
-        const formPackagePrice = document.getElementById('formPackagePrice');
         
         // Package data (will be set when modal is opened)
         let currentPackage = {
             name: "Emerald Waterways Expedition",
-            price: 1200,
+            priceGreen: 700,
+            priceLower: 600,
             duration: "6 Nights / 7 Days",
             groupSize: "Max 8 Guests",
             difficulty: "Easy to Moderate",
@@ -2654,7 +3346,6 @@
             
             // Update displayed package info
             packageName.textContent = currentPackage.name;
-            packagePrice.textContent = `USD ${currentPackage.price.toLocaleString()}`;
             packageDuration.textContent = `per person (${currentPackage.duration})`;
             summaryDuration.textContent = currentPackage.duration;
             summaryGroupSize.textContent = currentPackage.groupSize;
@@ -2665,7 +3356,6 @@
             // Update hidden form fields
             formPackageName.value = currentPackage.name;
             formPackageDuration.value = currentPackage.duration;
-            formPackagePrice.value = `USD ${currentPackage.price.toLocaleString()}`;
             
             // Update modal title
             const modalTitle = document.getElementById('modalTitle');
@@ -2673,20 +3363,56 @@
             if (modalTitle) modalTitle.textContent = `Book ${currentPackage.name}`;
             if (modalSubtitle) modalSubtitle.textContent = `Complete your booking for the ${currentPackage.name} safari`;
             
+            // Initialize seasonal pricing
+            initializeSeasonalPricing();
+            
             // Calculate deposit
             calculateDeposit();
+        }
+        
+        // Initialize seasonal pricing
+        function initializeSeasonalPricing() {
+            // Set default to green season
+            formSelectedSeason.value = 'green';
+            formPackagePrice.value = currentPackage.priceGreen;
+            
+            // Update season options
+            seasonOptions.forEach(option => {
+                const season = option.getAttribute('data-season');
+                const price = season === 'green' ? currentPackage.priceGreen : currentPackage.priceLower;
+                option.setAttribute('data-price', price);
+                
+                // Update price display
+                const priceElement = option.querySelector('.season-price');
+                if (priceElement) {
+                    priceElement.textContent = `USD ${price}`;
+                }
+                
+                // Set initial selection
+                if (season === 'green') {
+                    option.classList.add('selected');
+                    calcSeason.textContent = 'Green Season';
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
         }
         
         // Calculate deposit (25% of total)
         function calculateDeposit() {
             if (!travelersSelect) return;
             
+            // Get selected season and price
+            const selectedSeason = formSelectedSeason.value;
+            const pricePerPerson = selectedSeason === 'green' ? currentPackage.priceGreen : currentPackage.priceLower;
             const travelers = parseInt(travelersSelect.value) || 2;
-            const pricePerPerson = currentPackage.price;
             const totalCost = pricePerPerson * travelers;
             const deposit = totalCost * 0.25;
             
             // Update calculation display
+            if (calcSeason) {
+                calcSeason.textContent = selectedSeason === 'green' ? 'Green Season' : 'Lower Season';
+            }
             if (calcPricePerPerson) calcPricePerPerson.textContent = `USD ${pricePerPerson.toLocaleString()}`;
             if (calcTravelersCount) calcTravelersCount.textContent = travelers;
             if (calcTotalCost) calcTotalCost.textContent = `USD ${totalCost.toLocaleString()}`;
@@ -2816,6 +3542,34 @@
             }
         });
         
+        // Seasonal option selection
+        if (seasonOptions) {
+            seasonOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    seasonOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Update form values
+                    const season = this.getAttribute('data-season');
+                    const price = this.getAttribute('data-price');
+                    
+                    formSelectedSeason.value = season;
+                    formPackagePrice.value = price;
+                    
+                    // Update season display in calculation
+                    if (calcSeason) {
+                        calcSeason.textContent = season === 'green' ? 'Green Season' : 'Lower Season';
+                    }
+                    
+                    // Recalculate deposit
+                    calculateDeposit();
+                });
+            });
+        }
+        
         // Calculate deposit when travelers change
         if (travelersSelect) {
             travelersSelect.addEventListener('change', calculateDeposit);
@@ -2843,6 +3597,7 @@
                     phone: document.querySelector('input[name="phone"]').value,
                     country: document.querySelector('input[name="country"]').value,
                     travelers: document.querySelector('select[name="number_travelers"]').value,
+                    season: document.getElementById('formSelectedSeason').value,
                     month: document.querySelector('select[name="preferred_month"]').value,
                     year: document.querySelector('select[name="preferred_year"]').value,
                     specialRequests: document.querySelector('textarea[name="special_requests"]').value,
