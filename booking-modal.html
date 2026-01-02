@@ -1,0 +1,275 @@
+<!-- UNIVERSAL BOOKING MODAL -->
+<div class="booking-modal-overlay" id="universalBookingModal">
+    <div class="booking-modal">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="close-modal" id="closeUniversalModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title" id="modalSafariName">Book Your Safari Adventure</h2>
+            <p class="modal-subtitle" id="modalSafariSubtitle">Complete the form below to book your safari adventure</p>
+        </div>
+        
+        <!-- Content -->
+        <div class="modal-content">
+            <!-- Left: Booking Form -->
+            <div class="booking-form-section">
+                <h3 class="form-section-title">Traveler Information</h3>
+                
+                <form id="universalBookingForm" action="process-booking.php" method="POST">
+                    <!-- Hidden fields for safari details -->
+                    <input type="hidden" name="safari_id" id="formSafariId" value="">
+                    <input type="hidden" name="safari_name" id="formSafariName" value="">
+                    <input type="hidden" name="safari_duration" id="formSafariDuration" value="">
+                    <input type="hidden" name="selected_season" id="formSelectedSeason" value="green">
+                    <input type="hidden" name="package_price" id="formPackagePrice" value="">
+                    
+                    <!-- Personal Information -->
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label required">First Name</label>
+                            <input type="text" name="first_name" class="form-input" placeholder="Enter your first name" required>
+                            <div class="error-message" id="firstNameError">Please enter your first name</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Last Name</label>
+                            <input type="text" name="last_name" class="form-input" placeholder="Enter your last name" required>
+                            <div class="error-message" id="lastNameError">Please enter your last name</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label required">Email Address</label>
+                            <input type="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                            <div class="error-message" id="emailError">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Phone Number</label>
+                            <input type="tel" name="phone" class="form-input" placeholder="+267 123 4567" required>
+                            <div class="error-message" id="phoneError">Please enter your phone number</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label required">Country</label>
+                            <input type="text" name="country" class="form-input" placeholder="Your country of residence" required>
+                            <div class="error-message" id="countryError">Please enter your country</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Number of Travelers</label>
+                            <select name="number_travelers" class="form-select" id="numberTravelersSelect" required>
+                                <option value="">Select number</option>
+                                <option value="1">1 Traveler</option>
+                                <option value="2" selected>2 Travelers</option>
+                                <option value="3">3 Travelers</option>
+                                <option value="4">4 Travelers</option>
+                                <option value="5">5 Travelers</option>
+                                <option value="6">6 Travelers</option>
+                                <option value="7">7 Travelers</option>
+                                <option value="8">8 Travelers</option>
+                                <option value="9+">9+ Travelers (Contact us)</option>
+                            </select>
+                            <div class="error-message" id="travelersError">Please select number of travelers</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Seasonal Price Selection -->
+                    <div class="season-price-selection">
+                        <h4 style="color: #4A2C1A; margin-bottom: 15px; font-size: 16px;">Select Your Season & Price</h4>
+                        <div class="season-options">
+                            <div class="season-option green selected" data-season="green">
+                                <div class="season-name">🌿 Green Season</div>
+                                <div class="season-price" id="greenSeasonPrice">USD 0</div>
+                                <div style="font-size: 12px; color: #666; margin-top: 5px;">per person</div>
+                            </div>
+                            <div class="season-option lower" data-season="lower">
+                                <div class="season-name">☀️ Lower Season</div>
+                                <div class="season-price" id="lowerSeasonPrice">USD 0</div>
+                                <div style="font-size: 12px; color: #666; margin-top: 5px;">per person</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Travel Dates -->
+                    <h3 class="form-section-title" style="margin-top: 30px;">Travel Dates</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label required">Preferred Month</label>
+                            <select name="preferred_month" class="form-select" required>
+                                <option value="">Select Month</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                                <option value="Flexible">Flexible Dates</option>
+                            </select>
+                            <div class="error-message" id="monthError">Please select preferred month</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">Preferred Year</label>
+                            <select name="preferred_year" class="form-select" required>
+                                <option value="">Select Year</option>
+                                <option value="2025">2025</option>
+                                <option value="2026" selected>2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                            </select>
+                            <div class="error-message" id="yearError">Please select preferred year</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Special Requests -->
+                    <div class="form-group">
+                        <label class="form-label">Special Requests or Notes</label>
+                        <textarea name="special_requests" class="form-textarea" placeholder="Dietary restrictions, mobility concerns, photography interests, or other requirements..."></textarea>
+                    </div>
+                    
+                    <!-- Deposit Calculation -->
+                    <div class="deposit-calc">
+                        <h4 style="color: #4A2C1A; margin-bottom: 15px; font-size: 16px;">Deposit Calculation (25% Required)</h4>
+                        <div class="deposit-row">
+                            <span>Season Selected:</span>
+                            <span id="calcSeason">Green Season</span>
+                        </div>
+                        <div class="deposit-row">
+                            <span>Price per Person:</span>
+                            <span id="calcPricePerPerson">USD 0</span>
+                        </div>
+                        <div class="deposit-row">
+                            <span>Number of Travelers:</span>
+                            <span id="calcTravelersCount">2</span>
+                        </div>
+                        <div class="deposit-row">
+                            <span>Total Package Cost:</span>
+                            <span id="calcTotalCost">USD 0</span>
+                        </div>
+                        <div class="deposit-row total">
+                            <span>25% Deposit Required:</span>
+                            <span id="calcDepositAmount">USD 0</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Terms Agreement -->
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="universalTermsAgreed" name="terms_agreed" required>
+                        <label for="universalTermsAgreed">
+                            I agree to the <a href="Tracks Safari terms and conditions.pdf" target="_blank" class="terms-link">Terms & Conditions</a> and understand that a 25% deposit is required to confirm the booking. Balance payment is due 60 days before departure.
+                        </label>
+                    </div>
+                    <div class="error-message" id="termsError" style="margin-top: -15px; margin-bottom: 20px;">You must agree to the terms & conditions</div>
+                    
+                    <!-- Form Buttons -->
+                    <div class="form-buttons">
+                        <button type="button" class="modal-btn btn-cancel" id="cancelUniversalBtn">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="submit" class="modal-btn btn-submit" id="submitUniversalBtn">
+                            <i class="fas fa-paper-plane"></i> Submit Booking Inquiry
+                            <div class="loading-spinner" id="universalSubmitSpinner"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Right: Package Summary -->
+            <div class="package-summary">
+                <div class="summary-header">
+                    <h3 class="summary-title" id="summarySafariName">Safari Package</h3>
+                    
+                    <!-- Summary Pricing -->
+                    <div class="summary-pricing">
+                        <div class="summary-price-option green">
+                            <div class="summary-price-label">Green Season</div>
+                            <div class="summary-price-amount" id="summaryGreenPrice">USD 0</div>
+                            <div class="summary-price-note">per person</div>
+                        </div>
+                        <div class="summary-price-option lower">
+                            <div class="summary-price-label">Lower Season</div>
+                            <div class="summary-price-amount" id="summaryLowerPrice">USD 0</div>
+                            <div class="summary-price-note">per person</div>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-price-label" id="summarySafariDuration">Duration</div>
+                </div>
+                
+                <div class="package-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Duration</span>
+                        <span class="detail-value" id="summaryDuration">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Group Size</span>
+                        <span class="detail-value" id="summaryGroupSize">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Difficulty</span>
+                        <span class="detail-value" id="summaryDifficulty">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Best Time</span>
+                        <span class="detail-value" id="summaryBestTime">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Starting Point</span>
+                        <span class="detail-value" id="summaryStartPoint">-</span>
+                    </div>
+                </div>
+                
+                <!-- Hardcoded Features List (Same for all safaris) -->
+                <div class="features-list">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>All meals included</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Professional guide</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Luxury accommodation</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>All safari activities</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Park and concession fees</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Transport during safari</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Safety equipment</span>
+                    </div>
+                </div>
+                
+                <!-- Deposit Required -->
+                <div class="deposit-required">
+                    <div class="deposit-label">Deposit Required to Confirm</div>
+                    <div class="deposit-amount" id="depositRequired">USD 0</div>
+                    <div class="deposit-note">25% of total package cost</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
