@@ -12,9 +12,585 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- INCLUDE UNIVERSAL BOOKING MODAL STYLES -->
-    <link rel="stylesheet" href="booking-modal.css">
+    <!-- Universal Booking Modal Styles -->
+    <style>
+        /* ===== UNIVERSAL BOOKING MODAL STYLES ===== */
+        .booking-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 20px;
+            opacity: 0;
+            animation: modalFadeIn 0.3s ease forwards;
+        }
+
+        @keyframes modalFadeIn {
+            to { opacity: 1; }
+        }
+
+        .booking-modal {
+            background: white;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideUp 0.4s ease;
+        }
+
+        @keyframes modalSlideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #4A2C1A, #7A3E1E);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 15px 15px 0 0;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .modal-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .modal-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            min-height: 600px;
+        }
+
+        .booking-form-section {
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .form-section-title {
+            color: #4A2C1A;
+            font-size: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #C9A85E;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-label.required:after {
+            content: " *";
+            color: #e74c3c;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #7A3E1E;
+            box-shadow: 0 0 0 3px rgba(122, 62, 30, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #7A3E1E;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            resize: vertical;
+            min-height: 100px;
+            font-family: inherit;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: #7A3E1E;
+        }
+
+        /* Seasonal Price Selection */
+        .season-price-selection {
+            background: #f0f7f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border: 1px solid #c8e6c9;
+        }
+
+        .season-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .season-option {
+            flex: 1;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: white;
+        }
+
+        .season-option:hover {
+            border-color: #7A3E1E;
+            transform: translateY(-2px);
+        }
+
+        .season-option.selected {
+            border-color: #5A7D3E;
+            background: #f0f7f0;
+        }
+
+        .season-option.green {
+            border-left: 4px solid #2E7D32;
+        }
+
+        .season-option.lower {
+            border-left: 4px solid #FF9800;
+        }
+
+        .season-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .season-option.green .season-name {
+            color: #2E7D32;
+        }
+
+        .season-option.lower .season-name {
+            color: #FF9800;
+        }
+
+        .season-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .season-option.green .season-price {
+            color: #2E7D32;
+        }
+
+        .season-option.lower .season-price {
+            color: #FF9800;
+        }
+
+        /* Deposit Calculation */
+        .deposit-calc {
+            background: #f0f7f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border: 1px solid #c8e6c9;
+        }
+
+        .deposit-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .deposit-row.total {
+            font-weight: 700;
+            color: #4A2C1A;
+            font-size: 18px;
+            border-bottom: 2px solid #C9A85E;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        /* Terms Checkbox */
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 25px 0;
+            padding: 15px;
+            background: #f8f4e8;
+            border-radius: 8px;
+            border: 1px solid #e2c98d;
+        }
+
+        .terms-checkbox input {
+            margin-top: 3px;
+            transform: scale(1.2);
+        }
+
+        .terms-checkbox label {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .terms-link {
+            color: #4A2C1A;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .terms-link:hover {
+            color: #7A3E1E;
+        }
+
+        /* Form Buttons */
+        .form-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-cancel {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .btn-cancel:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #7A3E1E, #4A2C1A);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #8a4e2e, #5A3C2A);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(122, 62, 30, 0.3);
+        }
+
+        .btn-submit:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Package Summary */
+        .package-summary {
+            background: white;
+            padding: 30px;
+            border-left: 1px solid #eee;
+        }
+
+        .summary-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .summary-title {
+            color: #4A2C1A;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        /* Summary Pricing */
+        .summary-pricing {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+
+        .summary-price-option {
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .summary-price-option.green {
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(76, 175, 80, 0.05));
+            border-left: 3px solid #2E7D32;
+        }
+
+        .summary-price-option.lower {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.05));
+            border-left: 3px solid #FF9800;
+        }
+
+        .summary-price-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .summary-price-option.green .summary-price-label {
+            color: #2E7D32;
+        }
+
+        .summary-price-option.lower .summary-price-label {
+            color: #FF9800;
+        }
+
+        .summary-price-amount {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .summary-price-option.green .summary-price-amount {
+            color: #2E7D32;
+        }
+
+        .summary-price-option.lower .summary-price-amount {
+            color: #FF9800;
+        }
+
+        .summary-price-note {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* Package Details */
+        .package-details {
+            margin-bottom: 30px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .detail-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .detail-value {
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Features List */
+        .features-list {
+            margin-bottom: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .feature-item i {
+            color: #5A7D3E;
+            width: 20px;
+        }
+
+        /* Deposit Required */
+        .deposit-required {
+            background: linear-gradient(135deg, #f8f4e8, #f0e9d8);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+            border: 2px solid #e2c98d;
+        }
+
+        .deposit-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .deposit-amount {
+            font-size: 32px;
+            color: #4A2C1A;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .deposit-note {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Error Messages */
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-input.error,
+        .form-select.error {
+            border-color: #e74c3c;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .modal-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .package-summary {
+                border-left: none;
+                border-top: 1px solid #eee;
+            }
+            
+            .summary-pricing {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .season-options {
+                flex-direction: column;
+            }
+            
+            .form-buttons {
+                flex-direction: column;
+            }
+            
+            .modal-title {
+                font-size: 24px;
+            }
+            
+            .booking-modal {
+                max-height: 95vh;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .summary-price-option {
+                min-width: 100px;
+                padding: 8px 10px;
+            }
+        }
+    </style>
     
+    <!-- Kalahari Page Styles -->
     <style>
         /* ===== KALAHARI PAGE STYLES ===== */
         * {
@@ -1943,13 +2519,283 @@
         </div>
     </footer>
 
-    <!-- INCLUDE UNIVERSAL BOOKING MODAL HTML -->
-    <!-- The booking modal is now loaded from an external file -->
-    <!-- Ensure booking-modal.html exists in the same directory -->
+    <!-- UNIVERSAL BOOKING MODAL (Embedded directly in the HTML) -->
+    <div class="booking-modal-overlay" id="universalBookingModal">
+        <div class="booking-modal">
+            <!-- Header -->
+            <div class="modal-header">
+                <button class="close-modal" id="closeUniversalModal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 class="modal-title" id="modalSafariName">Book Your Safari Adventure</h2>
+                <p class="modal-subtitle" id="modalSafariSubtitle">Complete the form below to book your safari adventure</p>
+            </div>
+            
+            <!-- Content -->
+            <div class="modal-content">
+                <!-- Left: Booking Form -->
+                <div class="booking-form-section">
+                    <h3 class="form-section-title">Traveler Information</h3>
+                    
+                    <form id="universalBookingForm" action="process-booking.php" method="POST">
+                        <!-- Hidden fields for safari details -->
+                        <input type="hidden" name="safari_id" id="formSafariId" value="">
+                        <input type="hidden" name="safari_name" id="formSafariName" value="">
+                        <input type="hidden" name="safari_duration" id="formSafariDuration" value="">
+                        <input type="hidden" name="selected_season" id="formSelectedSeason" value="green">
+                        <input type="hidden" name="package_price" id="formPackagePrice" value="">
+                        
+                        <!-- Personal Information -->
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label required">First Name</label>
+                                <input type="text" name="first_name" class="form-input" placeholder="Enter your first name" required>
+                                <div class="error-message" id="firstNameError">Please enter your first name</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required">Last Name</label>
+                                <input type="text" name="last_name" class="form-input" placeholder="Enter your last name" required>
+                                <div class="error-message" id="lastNameError">Please enter your last name</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label required">Email Address</label>
+                                <input type="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                                <div class="error-message" id="emailError">Please enter a valid email address</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required">Phone Number</label>
+                                <input type="tel" name="phone" class="form-input" placeholder="+267 123 4567" required>
+                                <div class="error-message" id="phoneError">Please enter your phone number</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label required">Country</label>
+                                <input type="text" name="country" class="form-input" placeholder="Your country of residence" required>
+                                <div class="error-message" id="countryError">Please enter your country</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required">Number of Travelers</label>
+                                <select name="number_travelers" class="form-select" id="numberTravelersSelect" required>
+                                    <option value="">Select number</option>
+                                    <option value="1">1 Traveler</option>
+                                    <option value="2" selected>2 Travelers</option>
+                                    <option value="3">3 Travelers</option>
+                                    <option value="4">4 Travelers</option>
+                                    <option value="5">5 Travelers</option>
+                                    <option value="6">6 Travelers</option>
+                                    <option value="7">7 Travelers</option>
+                                    <option value="8">8 Travelers</option>
+                                    <option value="9+">9+ Travelers (Contact us)</option>
+                                </select>
+                                <div class="error-message" id="travelersError">Please select number of travelers</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Seasonal Price Selection -->
+                        <div class="season-price-selection">
+                            <h4 style="color: #4A2C1A; margin-bottom: 15px; font-size: 16px;">Select Your Season & Price</h4>
+                            <div class="season-options">
+                                <div class="season-option green selected" data-season="green">
+                                    <div class="season-name">🌿 Green Season</div>
+                                    <div class="season-price" id="greenSeasonPrice">USD 0</div>
+                                    <div style="font-size: 12px; color: #666; margin-top: 5px;">per person</div>
+                                </div>
+                                <div class="season-option lower" data-season="lower">
+                                    <div class="season-name">☀️ Lower Season</div>
+                                    <div class="season-price" id="lowerSeasonPrice">USD 0</div>
+                                    <div style="font-size: 12px; color: #666; margin-top: 5px;">per person</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Travel Dates -->
+                        <h3 class="form-section-title" style="margin-top: 30px;">Travel Dates</h3>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label required">Preferred Month</label>
+                                <select name="preferred_month" class="form-select" required>
+                                    <option value="">Select Month</option>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                    <option value="Flexible">Flexible Dates</option>
+                                </select>
+                                <div class="error-message" id="monthError">Please select preferred month</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required">Preferred Year</label>
+                                <select name="preferred_year" class="form-select" required>
+                                    <option value="">Select Year</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026" selected>2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                </select>
+                                <div class="error-message" id="yearError">Please select preferred year</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Special Requests -->
+                        <div class="form-group">
+                            <label class="form-label">Special Requests or Notes</label>
+                            <textarea name="special_requests" class="form-textarea" placeholder="Dietary restrictions, mobility concerns, photography interests, or other requirements..."></textarea>
+                        </div>
+                        
+                        <!-- Deposit Calculation -->
+                        <div class="deposit-calc">
+                            <h4 style="color: #4A2C1A; margin-bottom: 15px; font-size: 16px;">Deposit Calculation (25% Required)</h4>
+                            <div class="deposit-row">
+                                <span>Season Selected:</span>
+                                <span id="calcSeason">Green Season</span>
+                            </div>
+                            <div class="deposit-row">
+                                <span>Price per Person:</span>
+                                <span id="calcPricePerPerson">USD 0</span>
+                            </div>
+                            <div class="deposit-row">
+                                <span>Number of Travelers:</span>
+                                <span id="calcTravelersCount">2</span>
+                            </div>
+                            <div class="deposit-row">
+                                <span>Total Package Cost:</span>
+                                <span id="calcTotalCost">USD 0</span>
+                            </div>
+                            <div class="deposit-row total">
+                                <span>25% Deposit Required:</span>
+                                <span id="calcDepositAmount">USD 0</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Terms Agreement -->
+                        <div class="terms-checkbox">
+                            <input type="checkbox" id="universalTermsAgreed" name="terms_agreed" required>
+                            <label for="universalTermsAgreed">
+                                I agree to the <a href="Tracks Safari terms and conditions.pdf" target="_blank" class="terms-link">Terms & Conditions</a> and understand that a 25% deposit is required to confirm the booking. Balance payment is due 60 days before departure.
+                            </label>
+                        </div>
+                        <div class="error-message" id="termsError" style="margin-top: -15px; margin-bottom: 20px;">You must agree to the terms & conditions</div>
+                        
+                        <!-- Form Buttons -->
+                        <div class="form-buttons">
+                            <button type="button" class="modal-btn btn-cancel" id="cancelUniversalBtn">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button type="submit" class="modal-btn btn-submit" id="submitUniversalBtn">
+                                <i class="fas fa-paper-plane"></i> Submit Booking Inquiry
+                                <div class="loading-spinner" id="universalSubmitSpinner"></div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Right: Package Summary -->
+                <div class="package-summary">
+                    <div class="summary-header">
+                        <h3 class="summary-title" id="summarySafariName">Safari Package</h3>
+                        
+                        <!-- Summary Pricing -->
+                        <div class="summary-pricing">
+                            <div class="summary-price-option green">
+                                <div class="summary-price-label">Green Season</div>
+                                <div class="summary-price-amount" id="summaryGreenPrice">USD 0</div>
+                                <div class="summary-price-note">per person</div>
+                            </div>
+                            <div class="summary-price-option lower">
+                                <div class="summary-price-label">Lower Season</div>
+                                <div class="summary-price-amount" id="summaryLowerPrice">USD 0</div>
+                                <div class="summary-price-note">per person</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-price-label" id="summarySafariDuration">Duration</div>
+                    </div>
+                    
+                    <div class="package-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value" id="summaryDuration">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Group Size</span>
+                            <span class="detail-value" id="summaryGroupSize">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Difficulty</span>
+                            <span class="detail-value" id="summaryDifficulty">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Best Time</span>
+                            <span class="detail-value" id="summaryBestTime">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Starting Point</span>
+                            <span class="detail-value" id="summaryStartPoint">-</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Hardcoded Features List (Same for all safaris) -->
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>All meals included</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Professional guide</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Luxury accommodation</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>All safari activities</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Park and concession fees</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Transport during safari</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Safety equipment</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Deposit Required -->
+                    <div class="deposit-required">
+                        <div class="deposit-label">Deposit Required to Confirm</div>
+                        <div class="deposit-amount" id="depositRequired">USD 0</div>
+                        <div class="deposit-note">25% of total package cost</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- INCLUDE UNIVERSAL BOOKING MODAL JAVASCRIPT -->
-    <script src="booking-modal.js"></script>
-
+    <!-- Kalahari Page JavaScript (with embedded booking modal functionality) -->
     <script>
         // ===== KALAHARI PAGE JAVASCRIPT =====
         // Header scroll effect
@@ -2012,9 +2858,473 @@
                 });
             });
 
-            // The booking functionality is now handled by the universal booking modal script
-            // No need for separate booking modal JavaScript here
+            // Initialize the booking modal system
+            initBookingModal();
         });
+
+        // ===== UNIVERSAL BOOKING MODAL SYSTEM =====
+        function initBookingModal() {
+            // DOM Elements
+            const bookingModal = document.getElementById('universalBookingModal');
+            const closeModalBtn = document.getElementById('closeUniversalModal');
+            const cancelBtn = document.getElementById('cancelUniversalBtn');
+            const bookingForm = document.getElementById('universalBookingForm');
+            const submitBtn = document.getElementById('submitUniversalBtn');
+            const submitSpinner = document.getElementById('universalSubmitSpinner');
+            
+            // Seasonal pricing elements
+            const seasonOptions = document.querySelectorAll('.season-option');
+            const formSelectedSeason = document.getElementById('formSelectedSeason');
+            const formPackagePrice = document.getElementById('formPackagePrice');
+            
+            // Form elements
+            const firstNameInput = document.querySelector('input[name="first_name"]');
+            const lastNameInput = document.querySelector('input[name="last_name"]');
+            const emailInput = document.querySelector('input[name="email"]');
+            const phoneInput = document.querySelector('input[name="phone"]');
+            const countryInput = document.querySelector('input[name="country"]');
+            const travelersSelect = document.getElementById('numberTravelersSelect');
+            const monthSelect = document.querySelector('select[name="preferred_month"]');
+            const yearSelect = document.querySelector('select[name="preferred_year"]');
+            const termsCheckbox = document.getElementById('universalTermsAgreed');
+            
+            // Package details elements
+            const modalSafariName = document.getElementById('modalSafariName');
+            const modalSafariSubtitle = document.getElementById('modalSafariSubtitle');
+            const summarySafariName = document.getElementById('summarySafariName');
+            const summarySafariDuration = document.getElementById('summarySafariDuration');
+            const summaryDuration = document.getElementById('summaryDuration');
+            const summaryGroupSize = document.getElementById('summaryGroupSize');
+            const summaryDifficulty = document.getElementById('summaryDifficulty');
+            const summaryBestTime = document.getElementById('summaryBestTime');
+            const summaryStartPoint = document.getElementById('summaryStartPoint');
+            
+            // Pricing elements
+            const greenSeasonPrice = document.getElementById('greenSeasonPrice');
+            const lowerSeasonPrice = document.getElementById('lowerSeasonPrice');
+            const summaryGreenPrice = document.getElementById('summaryGreenPrice');
+            const summaryLowerPrice = document.getElementById('summaryLowerPrice');
+            
+            // Deposit calculation elements
+            const calcSeason = document.getElementById('calcSeason');
+            const calcPricePerPerson = document.getElementById('calcPricePerPerson');
+            const calcTravelersCount = document.getElementById('calcTravelersCount');
+            const calcTotalCost = document.getElementById('calcTotalCost');
+            const calcDepositAmount = document.getElementById('calcDepositAmount');
+            const depositRequired = document.getElementById('depositRequired');
+            
+            // Hidden form fields
+            const formSafariId = document.getElementById('formSafariId');
+            const formSafariName = document.getElementById('formSafariName');
+            const formSafariDuration = document.getElementById('formSafariDuration');
+            
+            // Current safari data
+            let currentSafari = {
+                id: '',
+                name: '',
+                priceGreen: 0,
+                priceLower: 0,
+                duration: '',
+                groupSize: '',
+                difficulty: '',
+                bestTime: '',
+                startPoint: ''
+            };
+            
+            // ===== EVENT LISTENERS SETUP =====
+            
+            // Close modal buttons
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', hideBookingModal);
+            }
+            
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', hideBookingModal);
+            }
+            
+            // Close modal when clicking outside
+            if (bookingModal) {
+                bookingModal.addEventListener('click', function(e) {
+                    if (e.target === bookingModal) {
+                        hideBookingModal();
+                    }
+                });
+            }
+            
+            // Escape key closes modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && bookingModal.style.display === 'flex') {
+                    hideBookingModal();
+                }
+            });
+            
+            // Seasonal option selection
+            if (seasonOptions) {
+                seasonOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        // Remove selected class from all options
+                        seasonOptions.forEach(opt => opt.classList.remove('selected'));
+                        
+                        // Add selected class to clicked option
+                        this.classList.add('selected');
+                        
+                        // Update form values
+                        const season = this.getAttribute('data-season');
+                        const price = season === 'green' ? currentSafari.priceGreen : currentSafari.priceLower;
+                        
+                        formSelectedSeason.value = season;
+                        formPackagePrice.value = price;
+                        
+                        // Update season display in calculation
+                        if (calcSeason) {
+                            calcSeason.textContent = season === 'green' ? 'Green Season' : 'Lower Season';
+                        }
+                        
+                        // Recalculate deposit
+                        calculateDeposit();
+                    });
+                });
+            }
+            
+            // Calculate deposit when travelers change
+            if (travelersSelect) {
+                travelersSelect.addEventListener('change', calculateDeposit);
+            }
+            
+            // Form submission
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (!validateForm()) {
+                        return;
+                    }
+                    
+                    // Show loading state
+                    submitBtn.disabled = true;
+                    submitSpinner.style.display = 'block';
+                    submitBtn.innerHTML = '<div class="loading-spinner" id="universalSubmitSpinner"></div> Processing...';
+                    
+                    // Collect form data
+                    const formData = {
+                        safariId: formSafariId.value,
+                        safariName: formSafariName.value,
+                        firstName: document.querySelector('input[name="first_name"]').value,
+                        lastName: document.querySelector('input[name="last_name"]').value,
+                        email: document.querySelector('input[name="email"]').value,
+                        phone: document.querySelector('input[name="phone"]').value,
+                        country: document.querySelector('input[name="country"]').value,
+                        travelers: document.querySelector('select[name="number_travelers"]').value,
+                        season: formSelectedSeason.value,
+                        month: document.querySelector('select[name="preferred_month"]').value,
+                        year: document.querySelector('select[name="preferred_year"]').value,
+                        specialRequests: document.querySelector('textarea[name="special_requests"]').value,
+                        packagePrice: formPackagePrice.value,
+                        bookingDate: new Date().toISOString()
+                    };
+                    
+                    // Save form data to localStorage (for thank you page)
+                    localStorage.setItem('safariBookingData', JSON.stringify(formData));
+                    
+                    // Submit form to server
+                    setTimeout(() => {
+                        bookingForm.submit();
+                    }, 1500);
+                });
+            }
+            
+            // Real-time validation
+            if (firstNameInput) firstNameInput.addEventListener('blur', validateField);
+            if (lastNameInput) lastNameInput.addEventListener('blur', validateField);
+            if (emailInput) emailInput.addEventListener('blur', validateField);
+            if (phoneInput) phoneInput.addEventListener('blur', validateField);
+            if (countryInput) countryInput.addEventListener('blur', validateField);
+            if (travelersSelect) travelersSelect.addEventListener('change', validateField);
+            if (monthSelect) monthSelect.addEventListener('change', validateField);
+            if (yearSelect) yearSelect.addEventListener('change', validateField);
+            if (termsCheckbox) termsCheckbox.addEventListener('change', validateField);
+            
+            // ===== UNIVERSAL BOOKING BUTTON HANDLER =====
+            
+            // Find ALL booking buttons on the page
+            const bookingButtons = document.querySelectorAll('.book-safari-btn');
+            
+            // Attach click handlers to all booking buttons
+            bookingButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get safari data from data attributes
+                    const safariData = {
+                        id: this.getAttribute('data-safari-id') || '',
+                        name: this.getAttribute('data-safari-name') || 'Safari Package',
+                        priceGreen: parseFloat(this.getAttribute('data-price-green')) || 0,
+                        priceLower: parseFloat(this.getAttribute('data-price-lower')) || 0,
+                        duration: this.getAttribute('data-duration') || '',
+                        groupSize: this.getAttribute('data-group-size') || '',
+                        difficulty: this.getAttribute('data-difficulty') || '',
+                        bestTime: this.getAttribute('data-best-time') || '',
+                        startPoint: this.getAttribute('data-start-point') || ''
+                    };
+                    
+                    // Show modal with safari data
+                    showBookingModal(safariData);
+                });
+            });
+            
+            // ===== CORE FUNCTIONS =====
+            
+            // Show modal with safari data
+            function showBookingModal(safariData) {
+                if (!bookingModal) return;
+                
+                // Update current safari data
+                currentSafari = { ...safariData };
+                
+                // Update modal content
+                updateModalContent();
+                
+                // Show modal
+                bookingModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                
+                // Trigger animation
+                setTimeout(() => {
+                    bookingModal.style.opacity = '1';
+                }, 10);
+                
+                // Reset form
+                resetForm();
+                
+                // Calculate initial deposit
+                calculateDeposit();
+            }
+            
+            // Hide modal
+            function hideBookingModal() {
+                if (!bookingModal) return;
+                
+                bookingModal.style.opacity = '0';
+                setTimeout(() => {
+                    bookingModal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+            
+            // Update modal content with current safari data
+            function updateModalContent() {
+                // Update modal header
+                if (modalSafariName) modalSafariName.textContent = `Book ${currentSafari.name}`;
+                if (modalSafariSubtitle) modalSafariSubtitle.textContent = `Complete your booking for the ${currentSafari.name} safari`;
+                
+                // Update summary section
+                if (summarySafariName) summarySafariName.textContent = currentSafari.name;
+                if (summarySafariDuration) summarySafariDuration.textContent = currentSafari.duration;
+                if (summaryDuration) summaryDuration.textContent = currentSafari.duration;
+                if (summaryGroupSize) summaryGroupSize.textContent = currentSafari.groupSize;
+                if (summaryDifficulty) summaryDifficulty.textContent = currentSafari.difficulty;
+                if (summaryBestTime) summaryBestTime.textContent = currentSafari.bestTime;
+                if (summaryStartPoint) summaryStartPoint.textContent = currentSafari.startPoint;
+                
+                // Update pricing
+                if (greenSeasonPrice) greenSeasonPrice.textContent = `USD ${currentSafari.priceGreen}`;
+                if (lowerSeasonPrice) lowerSeasonPrice.textContent = `USD ${currentSafari.priceLower}`;
+                if (summaryGreenPrice) summaryGreenPrice.textContent = `USD ${currentSafari.priceGreen}`;
+                if (summaryLowerPrice) summaryLowerPrice.textContent = `USD ${currentSafari.priceLower}`;
+                
+                // Update hidden form fields
+                if (formSafariId) formSafariId.value = currentSafari.id;
+                if (formSafariName) formSafariName.value = currentSafari.name;
+                if (formSafariDuration) formSafariDuration.value = currentSafari.duration;
+                
+                // Set default price to green season
+                if (formPackagePrice) formPackagePrice.value = currentSafari.priceGreen;
+            }
+            
+            // Calculate deposit (25% of total)
+            function calculateDeposit() {
+                if (!travelersSelect) return;
+                
+                // Get selected season and price
+                const selectedSeason = formSelectedSeason.value;
+                const pricePerPerson = selectedSeason === 'green' ? currentSafari.priceGreen : currentSafari.priceLower;
+                const travelers = parseInt(travelersSelect.value) || 2;
+                const totalCost = pricePerPerson * travelers;
+                const deposit = totalCost * 0.25;
+                
+                // Update calculation display
+                if (calcSeason) {
+                    calcSeason.textContent = selectedSeason === 'green' ? 'Green Season' : 'Lower Season';
+                }
+                if (calcPricePerPerson) calcPricePerPerson.textContent = `USD ${pricePerPerson.toLocaleString()}`;
+                if (calcTravelersCount) calcTravelersCount.textContent = travelers;
+                if (calcTotalCost) calcTotalCost.textContent = `USD ${totalCost.toLocaleString()}`;
+                if (calcDepositAmount) calcDepositAmount.textContent = `USD ${deposit.toLocaleString()}`;
+                if (depositRequired) depositRequired.textContent = `USD ${deposit.toLocaleString()}`;
+            }
+            
+            // Reset form to default state
+            function resetForm() {
+                if (bookingForm) {
+                    bookingForm.reset();
+                    
+                    // Set default values
+                    if (travelersSelect) travelersSelect.value = '2';
+                    if (yearSelect) yearSelect.value = '2026';
+                    
+                    // Reset seasonal selection to green
+                    if (seasonOptions) {
+                        seasonOptions.forEach(opt => opt.classList.remove('selected'));
+                        const greenOption = document.querySelector('.season-option.green');
+                        if (greenOption) greenOption.classList.add('selected');
+                    }
+                    
+                    if (formSelectedSeason) formSelectedSeason.value = 'green';
+                    if (formPackagePrice) formPackagePrice.value = currentSafari.priceGreen;
+                    
+                    // Clear errors
+                    document.querySelectorAll('.error-message').forEach(error => {
+                        error.style.display = 'none';
+                    });
+                    document.querySelectorAll('.form-input.error, .form-select.error').forEach(input => {
+                        input.classList.remove('error');
+                    });
+                    
+                    // Enable submit button
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Booking Inquiry<div class="loading-spinner" id="universalSubmitSpinner"></div>';
+                    }
+                    if (submitSpinner) submitSpinner.style.display = 'none';
+                }
+            }
+            
+            // Form validation
+            function validateForm() {
+                let isValid = true;
+                
+                // Clear previous errors
+                document.querySelectorAll('.error-message').forEach(error => {
+                    error.style.display = 'none';
+                });
+                document.querySelectorAll('.form-input.error, .form-select.error').forEach(input => {
+                    input.classList.remove('error');
+                });
+                
+                // Validate first name
+                if (!firstNameInput.value.trim()) {
+                    document.getElementById('firstNameError').style.display = 'block';
+                    firstNameInput.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate last name
+                if (!lastNameInput.value.trim()) {
+                    document.getElementById('lastNameError').style.display = 'block';
+                    lastNameInput.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    emailInput.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate phone
+                if (!phoneInput.value.trim()) {
+                    document.getElementById('phoneError').style.display = 'block';
+                    phoneInput.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate country
+                if (!countryInput.value.trim()) {
+                    document.getElementById('countryError').style.display = 'block';
+                    countryInput.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate travelers
+                if (!travelersSelect.value) {
+                    document.getElementById('travelersError').style.display = 'block';
+                    travelersSelect.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate month
+                if (!monthSelect.value) {
+                    document.getElementById('monthError').style.display = 'block';
+                    monthSelect.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate year
+                if (!yearSelect.value) {
+                    document.getElementById('yearError').style.display = 'block';
+                    yearSelect.classList.add('error');
+                    isValid = false;
+                }
+                
+                // Validate terms
+                if (!termsCheckbox.checked) {
+                    document.getElementById('termsError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            // Validate individual field
+            function validateField(e) {
+                const field = e.target;
+                const fieldName = field.name || field.id;
+                
+                // Clear error for this field
+                const errorId = fieldName === 'terms_agreed' ? 'termsError' : fieldName + 'Error';
+                const errorElement = document.getElementById(errorId);
+                if (errorElement) {
+                    errorElement.style.display = 'none';
+                    if (field.classList) {
+                        field.classList.remove('error');
+                    }
+                }
+                
+                // Re-validate this field
+                if (fieldName === 'first_name' && !field.value.trim()) {
+                    document.getElementById('firstNameError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'last_name' && !field.value.trim()) {
+                    document.getElementById('lastNameError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'email') {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!field.value.trim() || !emailRegex.test(field.value)) {
+                        document.getElementById('emailError').style.display = 'block';
+                        field.classList.add('error');
+                    }
+                } else if (fieldName === 'phone' && !field.value.trim()) {
+                    document.getElementById('phoneError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'country' && !field.value.trim()) {
+                    document.getElementById('countryError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'number_travelers' && !field.value) {
+                    document.getElementById('travelersError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'preferred_month' && !field.value) {
+                    document.getElementById('monthError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'preferred_year' && !field.value) {
+                    document.getElementById('yearError').style.display = 'block';
+                    field.classList.add('error');
+                } else if (fieldName === 'terms_agreed' && !field.checked) {
+                    document.getElementById('termsError').style.display = 'block';
+                }
+            }
+        }
     </script>
 </body>
 </html>
