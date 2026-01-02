@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botswana Safari Destinations - TRACKS ADVENTURE SAFARIS</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Explore Botswana's premier safari destinations. From the Okavango Delta to the Kalahari Desert, discover the best wildlife areas for your safari adventure.">
+    <meta name="keywords" content="Botswana destinations, Okavango Delta, Chobe National Park, Kalahari Desert, Moremi Game Reserve, Khwai Concession, Savuti Marsh, Central Kalahari, Makgadikgadi Pans">
+    <meta name="author" content="TRACKS Adventure Safaris">
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-brown: #7A3E1E;
+            --dark-brown: #4A2C1A;
+            --light-brown: #D4B59E;
+            --olive-green: #5A7D3E;
+            --dark-green: #3A5528;
+            --light-beige: #F8F4E8;
+            --gold: #C9A85E;
+            --gold-light: #E2C98D;
+            --white: #FFFFFF;
+            --black: #2C2C2C;
+            --gray: #666666;
+            --light-gray: #F0F0F0;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow-hover: 0 15px 40px rgba(0,0,0,0.12);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--black);
+            background-color: var(--light-beige);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            color: var(--dark-brown);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--gold), var(--olive-green));
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--dark-brown);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(201, 168, 94, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--olive-green), var(--dark-green));
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 20px rgba(90, 125, 62, 0.3);
+        }
+
+        /* ===== IMAGE FADE-IN ===== */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .fade-in.loaded {
+            opacity: 1;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(74, 44, 26, 0.95);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            padding: 15px 0;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-image {
+            height: 60px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover .logo-image {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            color: var(--gold);
+        }
+
+        .logo-main {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            margin-top: -3px;
+            color: var(--light-beige);
+            letter-spacing: 1px;
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        /* Current page indicator */
+        nav ul li a.current-page {
+            color: var(--gold);
+        }
+
+        nav ul li a.current-page:after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--dark-brown);
+            min-width: 220px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            z-index: 1001;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 10px 0;
+        }
+
+        .dropdown-content a {
+            color: var(--white);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--primary-brown);
+            padding-left: 25px;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Dropdown Divider */
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+            margin: 10px 0;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(74, 44, 26, 0.8), rgba(74, 44, 26, 0.9)), url('assets/images/destinations-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .page-hero p {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== DESTINATIONS GRID ===== */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .destination-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .destination-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--gold), var(--olive-green));
+            z-index: 1;
+        }
+
+        .destination-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--dark-brown), var(--primary-brown));
+            color: var(--gold-light);
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .destination-image {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .destination-image:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+        }
+
+        .destination-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .destination-card:hover .destination-image img {
+            transform: scale(1.1);
+        }
+
+        .destination-content {
+            padding: 30px;
+        }
+
+        .destination-title {
+            font-size: 24px;
+            color: var(--dark-brown);
+            margin-bottom: 15px;
+        }
+
+        .destination-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .destination-highlights {
+            margin-bottom: 25px;
+        }
+
+        .highlight-list {
+            list-style: none;
+        }
+
+        .highlight-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .highlight-list i {
+            color: var(--olive-green);
+            margin-top: 3px;
+        }
+
+        .destination-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .destination-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ===== REGION HIGHLIGHTS ===== */
+        .region-highlights {
+            background-color: var(--light-beige);
+            position: relative;
+        }
+
+        .region-highlights:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom right, var(--white) 49%, var(--light-beige) 50%);
+        }
+
+        .regions-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .region-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+        }
+
+        .region-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .region-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--gold), var(--olive-green));
+        }
+
+        .region-icon {
+            font-size: 48px;
+            color: var(--olive-green);
+            margin-bottom: 20px;
+        }
+
+        .region-title {
+            font-size: 24px;
+            color: var(--dark-brown);
+            margin-bottom: 15px;
+        }
+
+        .region-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .region-features {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .region-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .region-feature i {
+            color: var(--gold);
+            min-width: 20px;
+        }
+
+        /* ===== SEASONAL GUIDE ===== */
+        .seasonal-guide {
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .seasonal-guide:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom right, var(--light-beige) 49%, var(--white) 50%);
+        }
+
+        .seasons-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .season-card {
+            background: var(--light-beige);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .season-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .season-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .season-dry:before {
+            background: linear-gradient(to right, var(--gold), #E67E22);
+        }
+
+        .season-green:before {
+            background: linear-gradient(to right, var(--olive-green), #27AE60);
+        }
+
+        .season-title {
+            font-size: 24px;
+            color: var(--dark-brown);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .season-title i {
+            font-size: 28px;
+        }
+
+        .season-dry .season-title i {
+            color: #E67E22;
+        }
+
+        .season-green .season-title i {
+            color: #27AE60;
+        }
+
+        .season-period {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .season-highlights {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .season-highlights li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--gray);
+        }
+
+        .season-highlights i {
+            margin-top: 3px;
+            min-width: 20px;
+        }
+
+        .season-dry .season-highlights i {
+            color: #E67E22;
+        }
+
+        .season-green .season-highlights i {
+            color: #27AE60;
+        }
+
+        .season-destinations {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .season-destinations h4 {
+            color: var(--dark-brown);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .destination-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .destination-tag {
+            background: var(--white);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--dark-brown);
+        }
+
+        /* ===== WILDLIFE FOCUS ===== */
+        .wildlife-focus {
+            background-color: var(--light-beige);
+            position: relative;
+        }
+
+        .wildlife-focus:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom right, var(--white) 49%, var(--light-beige) 50%);
+        }
+
+        .wildlife-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .wildlife-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .wildlife-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .wildlife-icon {
+            font-size: 40px;
+            color: var(--olive-green);
+            margin-bottom: 15px;
+        }
+
+        .wildlife-title {
+            font-size: 20px;
+            color: var(--dark-brown);
+            margin-bottom: 10px;
+        }
+
+        .wildlife-description {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .wildlife-season {
+            margin-top: 15px;
+            font-size: 12px;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        /* ===== DESTINATION MAP ===== */
+        .destination-map {
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .destination-map:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom right, var(--light-beige) 49%, var(--white) 50%);
+        }
+
+        .map-container {
+            background: var(--light-beige);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .map-visual {
+            background: linear-gradient(135deg, rgba(90, 125, 62, 0.1), rgba(201, 168, 94, 0.1));
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-points {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        .map-point {
+            position: absolute;
+            background: var(--white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--dark-brown);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .map-point:hover {
+            transform: scale(1.1);
+            border-color: var(--gold);
+        }
+
+        .map-point.delta {
+            top: 30%;
+            left: 20%;
+            background: linear-gradient(135deg, #27AE60, #2ECC71);
+            color: var(--white);
+        }
+
+        .map-point.moremi {
+            top: 40%;
+            left: 30%;
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+            color: var(--white);
+        }
+
+        .map-point.khwai {
+            top: 35%;
+            left: 40%;
+            background: linear-gradient(135deg, #9B59B6, #8E44AD);
+            color: var(--white);
+        }
+
+        .map-point.savuti {
+            top: 20%;
+            left: 50%;
+            background: linear-gradient(135deg, #E67E22, #D35400);
+            color: var(--white);
+        }
+
+        .map-point.chobe {
+            top: 10%;
+            left: 60%;
+            background: linear-gradient(135deg, #E74C3C, #C0392B);
+            color: var(--white);
+        }
+
+        .map-point.kalahari {
+            top: 60%;
+            left: 40%;
+            background: linear-gradient(135deg, #F1C40F, #F39C12);
+            color: var(--dark-brown);
+        }
+
+        .map-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+        }
+
+        /* ===== CONTACT CTA ===== */
+        .contact-cta {
+            background: linear-gradient(135deg, var(--dark-brown), var(--primary-brown));
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-cta:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB4PSIwIiB5PSIwIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHg9IjAiIHk9IjAiB3dpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIwLjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=');
+            opacity: 0.5;
+        }
+
+        .contact-cta:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(90, 125, 62, 0.1), rgba(201, 168, 94, 0.1));
+        }
+
+        .contact-cta h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-cta p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-cta .btn {
+            position: relative;
+            z-index: 2;
+            padding: 18px 45px;
+            font-size: 17px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(to right, var(--dark-brown), #3a2418);
+            color: var(--white);
+            padding: 80px 0 30px;
+            position: relative;
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom right, var(--white) 49%, var(--dark-brown) 50%);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-column h3 {
+            color: var(--gold);
+            margin-bottom: 25px;
+            font-size: 22px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+
+        .footer-column p {
+            color: var(--light-brown);
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .footer-links a {
+            display: block;
+            color: var(--light-brown);
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            position: relative;
+            padding-left: 0;
+            border-radius: 4px;
+        }
+
+        .footer-links a:before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 15px;
+            background: rgba(201, 168, 94, 0.15);
+        }
+
+        .footer-links a:hover:before {
+            opacity: 1;
+            left: 0;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info i {
+            color: var(--gold);
+            margin-top: 3px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            font-size: 14px;
+            color: var(--light-brown);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+            .page-hero h1 {
+                font-size: 42px;
+            }
+            
+            .page-hero p {
+                font-size: 18px;
+            }
+            
+            .destinations-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .regions-container,
+            .seasons-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .wildlife-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 15px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--dark-brown);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                width: 100%;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                background: rgba(0,0,0,0.2);
+                margin-top: 10px;
+            }
+            
+            .page-hero {
+                height: 50vh;
+                margin-top: 120px;
+            }
+            
+            .page-hero h1 {
+                font-size: 32px;
+            }
+            
+            .page-hero p {
+                font-size: 16px;
+            }
+            
+            .section-title h2 {
+                font-size: 36px;
+            }
+            
+            .contact-cta h2 {
+                font-size: 36px;
+            }
+            
+            .destination-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .map-visual {
+                min-height: 250px;
+                padding: 20px;
+            }
+            
+            .map-points {
+                height: 250px;
+            }
+            
+            .map-point {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-hero h1 {
+                font-size: 28px;
+            }
+            
+            .btn {
+                padding: 14px 28px;
+                font-size: 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .destination-card {
+                margin: 0 10px;
+            }
+            
+            .wildlife-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .region-card,
+            .season-card {
+                padding: 25px;
+            }
+            
+            .destination-badge {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+            
+            .map-point {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-container">
+                <img src="logo.png" alt="TRACKS Adventure Safaris Logo" class="logo-image">
+                <div class="logo-text">
+                    <div class="logo-main">TRACKS</div>
+                    <div class="logo-subtitle">ADVENTURE SAFARIS & LODGES</div>
+                </div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="mainNav">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="find-a-safari.html">Find a Safari <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="emerald-waterways.html">Emerald Waterways Expedition</a>
+                            <a href="kalahari-dawn.html">Kalahari Dawn Discovery</a>
+                            <a href="rivers-north.html">Rivers of the North Safari</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="hunters-path.html">The Hunters' Path</a>
+                            <a href="great-northern-trail.html">Great Northern Predator Trail</a>
+                            <a href="southern-predator-path.html">Southern Predator Path</a>
+                        </div>
+                    </li>
+                    <li><a href="destinations.html" class="current-page">Destinations</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="custom-safari.html">Custom Safari</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Botswana Safari Destinations</h1>
+            <p>Discover Botswana's most spectacular wilderness areas, from the iconic Okavango Delta to the vast Kalahari Desert</p>
+        </div>
+    </section>
+
+    <!-- Destinations Grid -->
+    <section class="destinations">
+        <div class="container">
+            <div class="section-title">
+                <h2>Explore Our Key Destinations</h2>
+                <p class="section-subtitle">Each destination offers unique landscapes, wildlife, and safari experiences</p>
+            </div>
+            
+            <div class="destinations-grid">
+                <!-- Destination 1 - Okavango Delta -->
+                <div class="destination-card">
+                    <div class="destination-badge">Signature Destination</div>
+                    <div class="destination-image">
+                        <img src="assets/images/destination-delta.jpg" alt="Okavango Delta" class="fade-in">
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-title">Okavango Delta</h3>
+                        <p class="destination-description">The world's largest inland delta, a UNESCO World Heritage Site where waterways create a unique oasis in the Kalahari Desert. Experience mokoro excursions, walking safaris, and incredible birdlife.</p>
+                        
+                        <div class="destination-highlights">
+                            <ul class="highlight-list">
+                                <li><i class="fas fa-check"></i> UNESCO World Heritage Site</li>
+                                <li><i class="fas fa-check"></i> Mokoro (dugout canoe) safaris</li>
+                                <li><i class="fas fa-check"></i> Exceptional birdwatching (400+ species)</li>
+                                <li><i class="fas fa-check"></i> Big Five game viewing</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-info">
+                            <span><i class="far fa-calendar"></i> Best: May-October</span>
+                            <span><i class="fas fa-water"></i> Water-based safaris</span>
+                            <span><i class="fas fa-users"></i> Small group focus</span>
+                        </div>
+                        
+                        <a href="find-a-safari.html#delta" class="btn btn-primary" style="width: 100%;">View Delta Safaris</a>
+                    </div>
+                </div>
+                
+                <!-- Destination 2 - Moremi Game Reserve -->
+                <div class="destination-card">
+                    <div class="destination-badge">Predator Paradise</div>
+                    <div class="destination-image">
+                        <img src="assets/images/destination-moremi.jpg" alt="Moremi Game Reserve" class="fade-in">
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-title">Moremi Game Reserve</h3>
+                        <p class="destination-description">The first protected area in the Okavango Delta, known for its diverse habitats and exceptional predator sightings. Explore forests, floodplains, and lagoons teeming with wildlife.</p>
+                        
+                        <div class="destination-highlights">
+                            <ul class="highlight-list">
+                                <li><i class="fas fa-check"></i> Exceptional leopard sightings</li>
+                                <li><i class="fas fa-check"></i> African wild dog territory</li>
+                                <li><i class="fas fa-check"></i> Diverse ecosystems</li>
+                                <li><i class="fas fa-check"></i> Year-round wildlife viewing</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-info">
+                            <span><i class="far fa-calendar"></i> Best: Year-round</span>
+                            <span><i class="fas fa-paw"></i> Predator hotspot</span>
+                            <span><i class="fas fa-tree"></i> Forest & floodplain</span>
+                        </div>
+                        
+                        <a href="find-a-safari.html#moremi" class="btn btn-primary" style="width: 100%;">View Moremi Safaris</a>
+                    </div>
+                </div>
+                
+                <!-- Destination 3 - Chobe National Park -->
+                <div class="destination-card">
+                    <div class="destination-badge">Elephant Kingdom</div>
+                    <div class="destination-image">
+                        <img src="assets/images/destination-chobe.jpg" alt="Chobe National Park" class="fade-in">
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-title">Chobe National Park</h3>
+                        <p class="destination-description">Home to Africa's largest elephant population, Chobe offers spectacular river safaris and dense wildlife concentrations along the Chobe Riverfront.</p>
+                        
+                        <div class="destination-highlights">
+                            <ul class="highlight-list">
+                                <li><i class="fas fa-check"></i> Largest elephant herds in Africa</li>
+                                <li><i class="fas fa-check"></i> Spectacular river cruises</li>
+                                <li><i class="fas fa-check"></i> Diverse habitats (riverine, forest, floodplain)</li>
+                                <li><i class="fas fa-check"></i> Excellent lion and buffalo viewing</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-info">
+                            <span><i class="far fa-calendar"></i> Best: May-October</span>
+                            <span><i class="fas fa-ship"></i> River safaris</span>
+                            <span><i class="fas fa-elephant"></i> Elephant capital</span>
+                        </div>
+                        
+                        <a href="find-a-safari.html#chobe" class="btn btn-primary" style="width: 100%;">View Chobe Safaris</a>
+                    </div>
+                </div>
+                
+                <!-- Destination 4 - Savuti Marsh -->
+                <div class="destination-card">
+                    <div class="destination-badge">Predator Arena</div>
+                    <div class="destination-image">
+                        <img src="assets/images/destination-savuti.jpg" alt="Savuti Marsh" class="fade-in">
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-title">Savuti Marsh</h3>
+                        <p class="destination-description">A legendary region within Chobe National Park known for dramatic predator-prey interactions, mysterious water channels, and iconic baobab trees.</p>
+                        
+                        <div class="destination-highlights">
+                            <ul class="highlight-list">
+                                <li><i class="fas fa-check"></i> Famous lion vs elephant interactions</li>
+                                <li><i class="fas fa-check"></i> Iconic baobab-studded landscapes</li>
+                                <li><i class="fas fa-check"></i> Mysterious Savuti Channel</li>
+                                <li><i class="fas fa-check"></i> Exceptional dry season viewing</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-info">
+                            <span><i class="far fa-calendar"></i> Best: May-October</span>
+                            <span><i class="fas fa-fire"></i> Dramatic wildlife</span>
+                            <span><i class="fas fa-mountain"></i> Unique landscapes</span>
+                        </div>
+                        
+                        <a href="find-a-safari.html#savuti" class="btn btn-primary" style="width: 100%;">View Savuti Safaris</a>
+                    </div>
+                </div>
+                
+                <!-- Destination 5 - Central Kalahari -->
+                <div class="destination-card">
+                    <div class="destination-badge">Desert Wilderness</div>
+                    <div class="destination-image">
+                        <img src="assets/images/destination-kalahari.jpg" alt="Central Kalahari Game Reserve" class="fade-in">
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-title">Central Kalahari Game Reserve</h3>
+                        <p class="destination-description">Africa's second-largest game reserve offering vast open spaces, unique desert-adapted wildlife, and spectacular stargazing in complete solitude.</p>
+                        
+                        <div class="destination-highlights">
+                            <ul class="highlight-list">
+                                <li><i class="fas fa-check"></i> Vast, remote wilderness</li>
+                                <li><i class="fas fa-check"></i> Desert-adapted wildlife</li>
+                                <li><i class="fas fa-check"></i> Spectacular stargazing</li>
+                                <li><i class="fas fa-check"></i> Kalahari black-maned lions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-info">
+                            <span><i class="far fa-calendar"></i> Best: Dec-Apr, Jul-Oct</span>
+                            <span><i class="fas fa-sun"></i> Desert experience</span>
+                            <span><i class="fas fa-star"></i> Stargazing paradise</span>
+                        </div>
+                        
+                        <a href="find-a-safari.html#kalahari" class="btn btn-primary" style="width: 100%;">View Kalahari Safaris</a>
+                    </div>
+                </div>
+                
+                <!-- Destination 6 - Khwai Concession -->
+                <div class="destination-card">
+                    <div class="destination-badge">Wildlife Corridor</div>
+                    <div class="destination-image">
+                        <img src="assets/images/destination-khwai.jpg" alt="Khwai Concession" class="fade-in">
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-title">Khwai Concession</h3>
+                        <p class="destination-description">A private concession bordering Moremi, offering exclusive wildlife viewing, night drives, and walking safaris in a pristine wilderness area.</p>
+                        
+                        <div class="destination-highlights">
+                            <ul class="highlight-list">
+                                <li><i class="fas fa-check"></i> Exclusive private concession</li>
+                                <li><i class="fas fa-check"></i> Night drives permitted</li>
+                                <li><i class="fas fa-check"></i> Walking safaris available</li>
+                                <li><i class="fas fa-check"></i> Excellent leopard viewing</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-info">
+                            <span><i class="far fa-calendar"></i> Best: Year-round</span>
+                            <span><i class="fas fa-moon"></i> Night safaris</span>
+                            <span><i class="fas fa-walking"></i> Walking safaris</span>
+                        </div>
+                        
+                        <a href="find-a-safari.html#khwai" class="btn btn-primary" style="width: 100%;">View Khwai Safaris</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Region Highlights -->
+    <section class="region-highlights">
+        <div class="container">
+            <div class="section-title">
+                <h2>Botswana's Safari Regions</h2>
+                <p class="section-subtitle">Discover the unique characteristics of each safari region in Botswana</p>
+            </div>
+            
+            <div class="regions-container">
+                <!-- Region 1 - Northern Botswana -->
+                <div class="region-card">
+                    <div class="region-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3 class="region-title">Northern Waterways</h3>
+                    <p class="region-description">The lifeblood of Botswana's wildlife, featuring the Okavango Delta, Chobe River, and Kwando-Linyanti system.</p>
+                    
+                    <div class="region-features">
+                        <div class="region-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Okavango Delta waterways</span>
+                        </div>
+                        <div class="region-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Chobe River cruises</span>
+                        </div>
+                        <div class="region-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Linyanti & Kwando marshes</span>
+                        </div>
+                        <div class="region-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Year-round water sources</span>
+                        </div>
+                    </div>
+                    
+                    <a href="find-a-safari.html#northern" class="btn">Explore Northern Safaris</a>
+                </div>
+                
+                <!-- Region 2 - Central Botswana -->
+                <div class="region-card">
+                    <div class="region-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3 class="region-title">Central Woodlands</h3>
+                    <p class="region-description">Transitional zones featuring mopane forests, riverine woodlands, and the iconic Savuti Marsh.</p>
+                    
+                    <div class="region-features">
+                        <div class="region-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Mopane woodland ecosystems</span>
+                        </div>
+                        <div class="region-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Riverine forest corridors</span>
+                        </div>
+                        <div class="region-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Savuti's mysterious channels</span>
+                        </div>
+                        <div class="region-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Predator migration routes</span>
+                        </div>
+                    </div>
+                    
+                    <a href="find-a-safari.html#central" class="btn">Explore Central Safaris</a>
+                </div>
+                
+                <!-- Region 3 - Southern Botswana -->
+                <div class="region-card">
+                    <div class="region-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3 class="region-title">Southern Deserts</h3>
+                    <p class="region-description">The vast Kalahari Desert with its unique ecosystems, salt pans, and desert-adapted wildlife.</p>
+                    
+                    <div class="region-features">
+                        <div class="region-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Kalahari Desert landscapes</span>
+                        </div>
+                        <div class="region-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Makgadikgadi Salt Pans</span>
+                        </div>
+                        <div class="region-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Desert-adapted species</span>
+                        </div>
+                        <div class="region-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Ancient San culture</span>
+                        </div>
+                    </div>
+                    
+                    <a href="find-a-safari.html#southern" class="btn">Explore Desert Safaris</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seasonal Guide -->
+    <section class="seasonal-guide">
+        <div class="container">
+            <div class="section-title">
+                <h2>When to Visit Botswana</h2>
+                <p class="section-subtitle">Plan your safari according to Botswana's distinct seasons</p>
+            </div>
+            
+            <div class="seasons-container">
+                <!-- Dry Season -->
+                <div class="season-card season-dry">
+                    <h3 class="season-title">
+                        <i class="fas fa-sun"></i>
+                        Dry Season (May - October)
+                    </h3>
+                    <p class="season-period">Peak safari season for wildlife viewing</p>
+                    
+                    <ul class="season-highlights">
+                        <li><i class="fas fa-check"></i> Excellent wildlife viewing around water sources</li>
+                        <li><i class="fas fa-check"></i> Minimal mosquitoes and malaria risk</li>
+                        <li><i class="fas fa-check"></i> Pleasant daytime temperatures</li>
+                        <li><i class="fas fa-check"></i> Clear skies and great photography conditions</li>
+                        <li><i class="fas fa-check"></i> Okavango Delta at peak water levels (Jun-Aug)</li>
+                    </ul>
+                    
+                    <div class="season-destinations">
+                        <h4>Best During Dry Season:</h4>
+                        <div class="destination-tags">
+                            <span class="destination-tag">Chobe Riverfront</span>
+                            <span class="destination-tag">Savuti Marsh</span>
+                            <span class="destination-tag">Moremi Game Reserve</span>
+                            <span class="destination-tag">Central Kalahari (Jul-Oct)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Green Season -->
+                <div class="season-card season-green">
+                    <h3 class="season-title">
+                        <i class="fas fa-cloud-sun-rain"></i>
+                        Green Season (November - April)
+                    </h3>
+                    <p class="season-period">Lush landscapes and newborn animals</p>
+                    
+                    <ul class="season-highlights">
+                        <li><i class="fas fa-check"></i> Lush green landscapes and flowering plants</li>
+                        <li><i class="fas fa-check"></i> Birding paradise with migratory species</li>
+                        <li><i class="fas fa-check"></i> Lower rates and fewer tourists</li>
+                        <li><i class="fas fa-check"></i> Spectacular thunderstorms and dramatic skies</li>
+                        <li><i class="fas fa-check"></i> Newborn animals (Dec-Feb)</li>
+                    </ul>
+                    
+                    <div class="season-destinations">
+                        <h4>Best During Green Season:</h4>
+                        <div class="destination-tags">
+                            <span class="destination-tag">Okavango Delta</span>
+                            <span class="destination-tag">Central Kalahari (Dec-Apr)</span>
+                            <span class="destination-tag">Makgadikgadi Pans</span>
+                            <span class="destination-tag">Nxai Pan National Park</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="contact.html" class="btn btn-primary">Get Personalized Season Advice</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wildlife Focus -->
+    <section class="wildlife-focus">
+        <div class="container">
+            <div class="section-title">
+                <h2>Botswana's Iconic Wildlife</h2>
+                <p class="section-subtitle">Discover the incredible animals you can encounter on safari</p>
+            </div>
+            
+            <div class="wildlife-grid">
+                <!-- Wildlife 1 - Elephants -->
+                <div class="wildlife-card">
+                    <div class="wildlife-icon">
+                        <i class="fas fa-elephant"></i>
+                    </div>
+                    <h3 class="wildlife-title">African Elephant</h3>
+                    <p class="wildlife-description">Botswana has the world's largest elephant population, with over 130,000 elephants roaming freely.</p>
+                    <p class="wildlife-season">Best viewing: Year-round in Chobe, dry season in Savuti</p>
+                </div>
+                
+                <!-- Wildlife 2 - Lions -->
+                <div class="wildlife-card">
+                    <div class="wildlife-icon">
+                        <i class="fas fa-lion"></i>
+                    </div>
+                    <h3 class="wildlife-title">African Lion</h3>
+                    <p class="wildlife-description">From the famous Savuti lions to the black-maned Kalahari lions, Botswana offers exceptional lion viewing.</p>
+                    <p class="wildlife-season">Best viewing: Dry season in Savuti & Moremi</p>
+                </div>
+                
+                <!-- Wildlife 3 - Leopards -->
+                <div class="wildlife-card">
+                    <div class="wildlife-icon">
+                        <i class="fas fa-cat"></i>
+                    </div>
+                    <h3 class="wildlife-title">Leopard</h3>
+                    <p class="wildlife-description">Moremi and Khwai are renowned for leopard sightings, with these elusive cats often seen in trees.</p>
+                    <p class="wildlife-season">Best viewing: Year-round in Moremi & Khwai</p>
+                </div>
+                
+                <!-- Wildlife 4 - Wild Dogs -->
+                <div class="wildlife-card">
+                    <div class="wildlife-icon">
+                        <i class="fas fa-dog"></i>
+                    </div>
+                    <h3 class="wildlife-title">African Wild Dog</h3>
+                    <p class="wildlife-description">Botswana has one of Africa's largest populations of these endangered, highly social predators.</p>
+                    <p class="wildlife-season">Best viewing: Denning season (May-Jul) in Moremi</p>
+                </div>
+                
+                <!-- Wildlife 5 - Buffalo -->
+                <div class="wildlife-card">
+                    <div class="wildlife-icon">
+                        <i class="fas fa-bull"></i>
+                    </div>
+                    <h3 class="wildlife-title">Cape Buffalo</h3>
+                    <p class="wildlife-description">Large herds can be seen throughout northern Botswana, particularly in Chobe and Moremi.</p>
+                    <p class="wildlife-season">Best viewing: Dry season around water sources</p>
+                </div>
+                
+                <!-- Wildlife 6 - Birds -->
+                <div class="wildlife-card">
+                    <div class="wildlife-icon">
+                        <i class="fas fa-dove"></i>
+                    </div>
+                    <h3 class="wildlife-title">Birdlife</h3>
+                    <p class="wildlife-description">Over 500 species recorded, including rare slaty egrets, Pel's fishing owls, and carmine bee-eaters.</p>
+                    <p class="wildlife-season">Best viewing: Green season (Nov-Apr) for migrants</p>
+                </div>
+                
+                <!-- Wildlife 7 - Cheetah -->
+                <div class="wildlife-card">
+                    <div class="wildlife-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3 class="wildlife-title">Cheetah</h3>
+                    <p class="wildlife-description">Open areas of the Kalahari and Savuti provide perfect habitat for these speedy predators.</p>
+                    <p class="wildlife-season">Best viewing: Dry season in open grasslands</p>
+                </div>
+                
+                <!-- Wildlife 8 - Hippos -->
+                <div class="wildlife-card">
+                    <div class="wildlife-icon">
+                        <i class="fas fa-hippo"></i>
+                    </div>
+                    <h3 class="wildlife-title">Hippopotamus</h3>
+                    <p class="wildlife-description">Abundant in the Okavango Delta and Chobe River, often seen in pods during boat safaris.</p>
+                    <p class="wildlife-season">Best viewing: Year-round in waterways</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destination Map -->
+    <section class="destination-map">
+        <div class="container">
+            <div class="section-title">
+                <h2>Botswana Safari Map</h2>
+                <p class="section-subtitle">Explore Botswana's key safari destinations and wildlife corridors</p>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-visual">
+                    <div class="map-points">
+                        <div class="map-point delta" data-destination="okavango">Okavango Delta</div>
+                        <div class="map-point moremi" data-destination="moremi">Moremi Game Reserve</div>
+                        <div class="map-point khwai" data-destination="khwai">Khwai Concession</div>
+                        <div class="map-point savuti" data-destination="savuti">Savuti Marsh</div>
+                        <div class="map-point chobe" data-destination="chobe">Chobe National Park</div>
+                        <div class="map-point kalahari" data-destination="kalahari">Central Kalahari</div>
+                    </div>
+                </div>
+                
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #27AE60;"></div>
+                        <span>Okavango Delta (Waterways)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #3498DB;"></div>
+                        <span>Moremi (Game Reserve)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #9B59B6;"></div>
+                        <span>Khwai (Private Concession)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #E67E22;"></div>
+                        <span>Savuti (Marsh & Predators)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #E74C3C;"></div>
+                        <span>Chobe (Elephants & River)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #F1C40F;"></div>
+                        <span>Kalahari (Desert)</span>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <a href="find-a-safari.html" class="btn btn-primary">Explore Safari Routes Connecting These Destinations</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2>Ready to Explore Botswana?</h2>
+            <p>Our safari experts can help you choose the perfect destinations for your Botswana adventure. Contact us for personalized recommendations based on your interests and travel dates.</p>
+            <a href="contact.html" class="btn">Plan Your Destination Safari</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TRACKS ADVENTURE SAFARIS</h3>
+                    <p>"Life is a safari, let's conquer it together"</p>
+                    <p>Providing authentic, premium safari experiences in Botswana's most spectacular wilderness areas since 2016. Specialists in signature safari expeditions.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column footer-links">
+                    <h3>Signature Safari Routes</h3>
+                    <a href="emerald-waterways.html">Emerald Waterways Expedition</a>
+                    <a href="kalahari-dawn.html">Kalahari Dawn Discovery</a>
+                    <a href="rivers-north.html">Rivers of the North Safari</a>
+                    <a href="hunters-path.html">The Hunters' Path</a>
+                    <a href="great-northern-trail.html">Great Northern Predator Trail</a>
+                    <a href="southern-predator-path.html">Southern Predator Path</a>
+                    <a href="custom-safari.html">Custom Safari Design</a>
+                </div>
+                
+                <div class="footer-column contact-info">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-phone"></i> +267 72114790</p>
+                    <p><i class="fas fa-phone"></i> +267 73654794</p>
+                    <p><i class="fas fa-phone"></i> +267 74207072</p>
+                    <p><i class="fas fa-envelope"></i> tracksadventuresafaris2016@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New mall opposite Museum, Maun, Botswana</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 TRACKS ADVENTURE SAFARIS & LODGES. All rights reserved.</p>
+                <p style="margin-top: 10px; font-size: 12px; opacity: 0.8;">Specialists in premium safari expeditions across Botswana's wilderness areas.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== IMAGE LOADER FOR FADE-IN EFFECT =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeImages = document.querySelectorAll('.fade-in');
+            
+            fadeImages.forEach(img => {
+                // Check if image is already loaded
+                if (img.complete) {
+                    img.classList.add('loaded');
+                } else {
+                    img.addEventListener('load', function() {
+                        this.classList.add('loaded');
+                    });
+                    // Fallback in case load event doesn't fire
+                    setTimeout(() => {
+                        img.classList.add('loaded');
+                    }, 500);
+                }
+            });
+
+            // ===== HEADER SCROLL EFFECT =====
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // ===== MOBILE MENU =====
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function() {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                });
+            });
+
+            // ===== DESTINATION MAP INTERACTION =====
+            const mapPoints = document.querySelectorAll('.map-point');
+            
+            mapPoints.forEach(point => {
+                point.addEventListener('click', function() {
+                    const destination = this.getAttribute('data-destination');
+                    // Scroll to corresponding destination card
+                    const destinationCards = document.querySelectorAll('.destination-card');
+                    destinationCards.forEach(card => {
+                        const cardTitle = card.querySelector('.destination-title').textContent.toLowerCase();
+                        if (cardTitle.includes(destination) || destination.includes(cardTitle.split(' ')[0].toLowerCase())) {
+                            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            
+                            // Add highlight effect
+                            card.style.boxShadow = '0 0 0 3px var(--gold)';
+                            setTimeout(() => {
+                                card.style.boxShadow = '';
+                            }, 2000);
+                        }
+                    });
+                });
+            });
+
+            // ===== SMOOTH SCROLLING =====
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href === '#') return;
+                    
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
