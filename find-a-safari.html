@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Your Perfect Safari - TRACKS ADVENTURE SAFARIS</title>
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Choose from our curated collection of classic and premium Botswana safaris. From 6-night classic adventures to 9-night predator-focused routes.">
-    <meta name="keywords" content="Botswana safari packages, predator safaris, Okavango Delta tours, Chobe National Park, Kalahari Desert, Moremi, Khwai, Savuti, wildlife corridors">
+    <meta name="description" content="Choose from our curated collection of signature Botswana safaris. From Delta waterways to desert expeditions and predator-focused routes.">
+    <meta name="keywords" content="Botswana safari packages, predator safaris, Okavango Delta, Chobe National Park, Kalahari Desert, Moremi, Khwai, Savuti, wildlife corridors, Emerald Waterways, Kalahari Dawn">
     <meta name="author" content="TRACKS Adventure Safaris">
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,6 +28,9 @@
             --light-beige: #F8F4E8;
             --gold: #C9A85E;
             --gold-light: #E2C98D;
+            --green-season: #2E7D32;
+            --green-season-light: #4CAF50;
+            --lower-season: #FF9800;
             --white: #FFFFFF;
             --black: #2C2C2C;
             --gray: #666666;
@@ -232,6 +235,15 @@
             width: 100%;
         }
 
+        /* Current page indicator */
+        nav ul li a.current-page {
+            color: var(--gold);
+        }
+
+        nav ul li a.current-page:after {
+            width: 100%;
+        }
+
         /* Dropdown Menu */
         .dropdown {
             position: relative;
@@ -274,6 +286,13 @@
             display: block;
         }
 
+        /* Dropdown Divider */
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+            margin: 10px 0;
+        }
+
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -286,7 +305,7 @@
         /* ===== PAGE HERO ===== */
         .page-hero {
             height: 60vh;
-            background: linear-gradient(rgba(74, 44, 26, 0.8), rgba(74, 44, 26, 0.9)), url('assets/images/find-safari-hero.jpg');
+            background: linear-gradient(rgba(74, 44, 26, 0.8), rgba(74, 44, 26, 0.9)), url('assets/images/hero-slide-1.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -393,13 +412,16 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: var(--gold);
-            color: var(--dark-brown);
-            padding: 8px 15px;
+            background: linear-gradient(135deg, var(--dark-brown), var(--primary-brown));
+            color: var(--gold-light);
+            padding: 10px 18px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 700;
             z-index: 2;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .safari-image {
@@ -449,7 +471,7 @@
         .safari-details {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-size: 14px;
             color: var(--gray);
         }
@@ -460,20 +482,84 @@
             gap: 8px;
         }
 
-        .safari-price {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--dark-brown);
+        /* DUAL SEASON PRICING - Matching homepage */
+        .price-container {
+            border-top: 1px solid var(--light-gray);
+            padding-top: 20px;
             margin-bottom: 25px;
+        }
+
+        .price-season {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .price-season:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .price-green-season {
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(76, 175, 80, 0.05));
+            border-left: 4px solid var(--green-season);
+        }
+
+        .price-lower-season {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.05));
+            border-left: 4px solid var(--lower-season);
+        }
+
+        .season-icon {
+            font-size: 20px;
+            margin-right: 12px;
+            width: 30px;
             text-align: center;
         }
 
-        .safari-price small {
-            font-size: 14px;
-            font-weight: normal;
-            color: var(--gray);
+        .season-info {
+            flex: 1;
+        }
+
+        .season-label {
             display: block;
-            margin-top: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .price-green-season .season-label {
+            color: var(--green-season);
+        }
+
+        .price-lower-season .season-label {
+            color: var(--lower-season);
+        }
+
+        .price-amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .price-green-season .price-amount {
+            color: var(--green-season);
+        }
+
+        .price-lower-season .price-amount {
+            color: var(--lower-season);
+        }
+
+        .per-person {
+            font-size: 11px;
+            color: var(--gray);
+            margin-left: 5px;
+            font-weight: 400;
         }
 
         /* ===== SAFARI CATEGORIES ===== */
@@ -590,6 +676,14 @@
             font-size: 13px;
             font-weight: 500;
             color: var(--dark-brown);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .destination-tag:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-2px);
         }
 
         .route-footer {
@@ -599,6 +693,78 @@
             margin-top: 25px;
             padding-top: 20px;
             border-top: 1px solid var(--light-gray);
+        }
+
+        /* Route Price Container - Matching homepage */
+        .route-price-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .route-price-season {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 160px;
+            transition: var(--transition);
+        }
+
+        .route-price-season:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .route-price-green {
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(76, 175, 80, 0.05));
+            border-left: 4px solid var(--green-season);
+        }
+
+        .route-price-lower {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.05));
+            border-left: 4px solid var(--lower-season);
+        }
+
+        .route-season-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .route-price-green .route-season-label {
+            color: var(--green-season);
+        }
+
+        .route-price-lower .route-season-label {
+            color: var(--lower-season);
+        }
+
+        .route-price-amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .route-price-green .route-price-amount {
+            color: var(--green-season);
+        }
+
+        .route-price-lower .route-price-amount {
+            color: var(--lower-season);
+        }
+
+        .route-price-note {
+            font-size: 11px;
+            color: var(--gray);
+            margin-top: 3px;
         }
 
         /* ===== CUSTOM SAFARI ===== */
@@ -801,7 +967,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB4PSIwIiB5PSIwIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHg9IjAiIHk9IjAiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB4PSIwIiB5PSIwIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHg9IjAiIHk9IjAiB3dpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIwLjA1Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+');
             opacity: 0.3;
         }
 
@@ -885,9 +1051,10 @@
             text-decoration: none;
             margin-bottom: 12px;
             transition: all 0.3s ease;
-            padding: 5px 0;
+            padding: 8px 12px;
             position: relative;
             padding-left: 0;
+            border-radius: 4px;
         }
 
         .footer-links a:before {
@@ -901,11 +1068,17 @@
         .footer-links a:hover {
             color: var(--gold);
             padding-left: 15px;
+            background: rgba(201, 168, 94, 0.15);
         }
 
         .footer-links a:hover:before {
             opacity: 1;
             left: 0;
+        }
+
+        .footer-links a:focus {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
         }
 
         .contact-info p {
@@ -980,6 +1153,15 @@
             
             .custom-features {
                 grid-template-columns: 1fr;
+            }
+            
+            .route-price-container {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .route-price-season {
+                min-width: 100%;
             }
         }
 
@@ -1064,6 +1246,15 @@
             .route-card {
                 padding: 25px;
             }
+            
+            .safari-details {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .price-container {
+                padding-top: 15px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1097,6 +1288,19 @@
                 width: 100%;
                 text-align: center;
             }
+            
+            .safari-badge {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+            
+            .price-amount {
+                font-size: 20px;
+            }
+            
+            .route-price-amount {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -1120,11 +1324,11 @@
                 <ul id="mainNav">
                     <li><a href="index.html">Home</a></li>
                     <li class="dropdown">
-                        <a href="find-a-safari.html" class="active">Find a Safari <i class="fas fa-chevron-down"></i></a>
+                        <a href="find-a-safari.html" class="current-page">Find a Safari <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-content">
-                            <a href="okavango-delta.html">Okavango Delta Safari</a>
-                            <a href="chobe-national-park.html">Chobe National Park Safari</a>
-                            <a href="central-kalahari.html">Central Kalahari Safari</a>
+                            <a href="emerald-waterways.html">Emerald Waterways Expedition</a>
+                            <a href="kalahari-dawn.html">Kalahari Dawn Discovery</a>
+                            <a href="rivers-north.html">Rivers of the North Safari</a>
                             <div class="dropdown-divider"></div>
                             <a href="hunters-path.html">The Hunters' Path</a>
                             <a href="great-northern-trail.html">Great Northern Predator Trail</a>
@@ -1135,6 +1339,7 @@
                     <li><a href="gallery.html">Gallery</a></li>
                     <li><a href="custom-safari.html">Custom Safari</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
                 </ul>
             </nav>
         </div>
@@ -1144,7 +1349,7 @@
     <section class="page-hero">
         <div class="page-hero-content">
             <h1>Find Your Perfect Safari</h1>
-            <p>Choose from our curated collection of classic and premium Botswana safaris. From 6-night classic adventures to 9-night predator-focused routes.</p>
+            <p>Choose from our curated collection of signature Botswana safaris. From Delta waterways to desert expeditions and predator-focused routes.</p>
         </div>
     </section>
 
@@ -1153,9 +1358,9 @@
         <div class="container">
             <div class="filter-container">
                 <button class="filter-btn active" data-filter="all">All Safaris</button>
-                <button class="filter-btn" data-filter="classic">Classic 6-Night Safaris</button>
+                <button class="filter-btn" data-filter="signature">Signature Safaris</button>
                 <button class="filter-btn" data-filter="predator">Predator Routes</button>
-                <button class="filter-btn" data-filter="extended">Extended Safaris (9+ Nights)</button>
+                <button class="filter-btn" data-filter="extended">Extended Safaris</button>
                 <button class="filter-btn" data-filter="budget">USD 700 & Under</button>
             </div>
         </div>
@@ -1170,67 +1375,114 @@
             </div>
             
             <div class="comparison-grid">
-                <!-- Classic Safaris -->
-                <div class="safari-card" data-category="classic budget">
-                    <div class="safari-badge">Classic</div>
+                <!-- Safari 1 - Emerald Waterways Expedition -->
+                <div class="safari-card" data-category="signature budget">
+                    <div class="safari-badge">Delta Signature</div>
                     <div class="safari-image">
-                        <img src="assets/images/okavango-package.jpg" alt="Okavango Delta Safari">
+                        <img src="assets/images/emerald-waterways.jpg" alt="Emerald Waterways Expedition">
                     </div>
                     <div class="safari-content">
-                        <h3 class="safari-title">Okavango Delta Safari</h3>
-                        <p class="safari-description">Journey through the world's largest inland delta, home to incredible biodiversity and stunning landscapes.</p>
+                        <h3 class="safari-title">Emerald Waterways Expedition</h3>
+                        <p class="safari-description">A tranquil yet wildlife-rich journey through the beating heart of the Okavango Delta. Glide through mirrored channels, explore ancient woodlands, and witness predator action along the Khwai floodplains.</p>
                         <div class="safari-details">
-                            <span><i class="far fa-clock"></i> 6 Nights</span>
+                            <span><i class="far fa-clock"></i> 7 Days / 6 Nights</span>
                             <span><i class="fas fa-users"></i> Max 7 Guests</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Okavango Delta</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Moremi → Xakanaxa → Khwai</span>
                         </div>
-                        <div class="safari-price">
-                            USD 700
-                            <small>per person sharing</small>
+                        
+                        <!-- DUAL SEASON PRICING -->
+                        <div class="price-container">
+                            <div class="price-season price-green-season">
+                                <span class="season-icon">🌿</span>
+                                <div class="season-info">
+                                    <span class="season-label">Green Season (Peak)</span>
+                                    <div class="price-amount">USD 700 <span class="per-person">per person</span></div>
+                                </div>
+                            </div>
+                            <div class="price-season price-lower-season">
+                                <span class="season-icon">☀️</span>
+                                <div class="season-info">
+                                    <span class="season-label">Lower Season</span>
+                                    <div class="price-amount">USD 600 <span class="per-person">per person</span></div>
+                                </div>
+                            </div>
                         </div>
-                        <a href="okavango-delta.html" class="btn btn-primary" style="width: 100%;">View Details</a>
+                        
+                        <a href="emerald-waterways.html" class="btn btn-primary" style="width: 100%;">View Safari Details</a>
                     </div>
                 </div>
                 
-                <div class="safari-card" data-category="classic budget">
-                    <div class="safari-badge">Classic</div>
+                <!-- Safari 2 - Kalahari Dawn Discovery -->
+                <div class="safari-card" data-category="signature">
+                    <div class="safari-badge">Desert Expedition</div>
                     <div class="safari-image">
-                        <img src="assets/images/chobe-package.jpg" alt="Chobe National Park Safari">
+                        <img src="assets/images/kalahari-dawn.jpg" alt="Kalahari Dawn Discovery">
                     </div>
                     <div class="safari-content">
-                        <h3 class="safari-title">Chobe National Park Safari</h3>
-                        <p class="safari-description">Experience Africa's largest elephant population with incredible game viewing and river cruises.</p>
+                        <h3 class="safari-title">Kalahari Dawn Discovery</h3>
+                        <p class="safari-description">Journey into Botswana's great open spaces — a land of endless pans, golden grasslands, and rare predator sightings. Perfect for travellers seeking raw wilderness and quiet beauty.</p>
                         <div class="safari-details">
-                            <span><i class="far fa-clock"></i> 6 Nights</span>
+                            <span><i class="far fa-clock"></i> 7 Days / 6 Nights</span>
                             <span><i class="fas fa-users"></i> Max 7 Guests</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Chobe National Park</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Passarge → Deception → Piper</span>
                         </div>
-                        <div class="safari-price">
-                            USD 700
-                            <small>per person sharing</small>
+                        
+                        <!-- DUAL SEASON PRICING -->
+                        <div class="price-container">
+                            <div class="price-season price-green-season">
+                                <span class="season-icon">🌿</span>
+                                <div class="season-info">
+                                    <span class="season-label">Green Season (Peak)</span>
+                                    <div class="price-amount">USD 750 <span class="per-person">per person</span></div>
+                                </div>
+                            </div>
+                            <div class="price-season price-lower-season">
+                                <span class="season-icon">☀️</span>
+                                <div class="season-info">
+                                    <span class="season-label">Lower Season</span>
+                                    <div class="price-amount">USD 650 <span class="per-person">per person</span></div>
+                                </div>
+                            </div>
                         </div>
-                        <a href="chobe-national-park.html" class="btn btn-primary" style="width: 100%;">View Details</a>
+                        
+                        <a href="kalahari-dawn.html" class="btn btn-primary" style="width: 100%;">View Safari Details</a>
                     </div>
                 </div>
                 
-                <div class="safari-card" data-category="classic">
-                    <div class="safari-badge">Classic</div>
+                <!-- Safari 3 - Rivers of the North Safari -->
+                <div class="safari-card" data-category="signature extended">
+                    <div class="safari-badge">Multi-River Adventure</div>
                     <div class="safari-image">
-                        <img src="assets/images/kalahari-package.jpg" alt="Central Kalahari Desert Safari">
+                        <img src="assets/images/rivers-north.jpg" alt="Rivers of the North Safari">
                     </div>
                     <div class="safari-content">
-                        <h3 class="safari-title">Central Kalahari Desert Safari</h3>
-                        <p class="safari-description">Discover the unique ecosystem of the Kalahari and its specially adapted wildlife and San culture.</p>
+                        <h3 class="safari-title">Rivers of the North Safari</h3>
+                        <p class="safari-description">From the Okavango Panhandle to the Kwando and Chobe Rivers, this expedition brings you face-to-face with elephants, big cats, and iconic northern waterways. A journey of dramatic contrasts.</p>
                         <div class="safari-details">
-                            <span><i class="far fa-clock"></i> 6 Nights</span>
+                            <span><i class="far fa-clock"></i> 12 Days / 11 Nights</span>
                             <span><i class="fas fa-users"></i> Max 7 Guests</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Central Kalahari</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Panhandle → Kwando → Savuti → Chobe</span>
                         </div>
-                        <div class="safari-price">
-                            USD 750
-                            <small>per person sharing</small>
+                        
+                        <!-- DUAL SEASON PRICING -->
+                        <div class="price-container">
+                            <div class="price-season price-green-season">
+                                <span class="season-icon">🌿</span>
+                                <div class="season-info">
+                                    <span class="season-label">Green Season (Peak)</span>
+                                    <div class="price-amount">USD 700 <span class="per-person">per person</span></div>
+                                </div>
+                            </div>
+                            <div class="price-season price-lower-season">
+                                <span class="season-icon">☀️</span>
+                                <div class="season-info">
+                                    <span class="season-label">Lower Season</span>
+                                    <div class="price-amount">USD 600 <span class="per-person">per person</span></div>
+                                </div>
+                            </div>
                         </div>
-                        <a href="central-kalahari.html" class="btn btn-primary" style="width: 100%;">View Details</a>
+                        
+                        <a href="rivers-north.html" class="btn btn-primary" style="width: 100%;">View Safari Details</a>
                     </div>
                 </div>
             </div>
@@ -1250,9 +1502,9 @@
                 <div class="route-card" data-category="predator budget">
                     <div class="route-header">
                         <h3 class="route-title">The Hunters' Path Safari</h3>
-                        <div class="route-duration">6 Nights / 7 Days</div>
+                        <div class="route-duration">7 Days / 6 Nights</div>
                     </div>
-                    <p class="route-description">Follow the predator trails of Moremi's forests and Khwai's floodplains — the ultimate leopard, lion, and wild dog route.</p>
+                    <p class="route-description">Follow the predator trails of Moremi's forests and Khwai's floodplains — the ultimate leopard, lion, and wild dog route. This 6-night safari takes you through some of Botswana's most wildlife-rich areas, with prime predator viewing opportunities.</p>
                     
                     <div class="route-destinations">
                         <span class="destination-tag">Moremi Game Reserve</span>
@@ -1280,9 +1532,17 @@
                     </div>
                     
                     <div class="route-footer">
-                        <div class="safari-price" style="margin: 0; text-align: left;">
-                            USD 700
-                            <small>per person sharing</small>
+                        <div class="route-price-container">
+                            <div class="route-price-season route-price-green">
+                                <span class="route-season-label">🌿 Green Season (Peak)</span>
+                                <div class="route-price-amount">USD 700</div>
+                                <div class="route-price-note">per person</div>
+                            </div>
+                            <div class="route-price-season route-price-lower">
+                                <span class="route-season-label">☀️ Lower Season</span>
+                                <div class="route-price-amount">USD 600</div>
+                                <div class="route-price-note">per person</div>
+                            </div>
                         </div>
                         <a href="hunters-path.html" class="btn btn-primary">View Full Itinerary</a>
                     </div>
@@ -1292,9 +1552,9 @@
                 <div class="route-card" data-category="predator extended">
                     <div class="route-header">
                         <h3 class="route-title">The Great Northern Predator Trail</h3>
-                        <div class="route-duration">9 Nights / 10 Days</div>
+                        <div class="route-duration">10 Days / 9 Nights</div>
                     </div>
-                    <p class="route-description">A signature expedition through Botswana's most wildlife-rich ecosystems — from Delta forests to Khwai wetlands and the iconic Savuti Marsh.</p>
+                    <p class="route-description">A signature expedition through Botswana's most wildlife-rich ecosystems — from Delta forests to Khwai wetlands and the iconic Savuti Marsh. This comprehensive 9-night journey covers the entire predator corridor from Moremi to Kasane.</p>
                     
                     <div class="route-destinations">
                         <span class="destination-tag">Moremi Game Reserve</span>
@@ -1323,9 +1583,17 @@
                     </div>
                     
                     <div class="route-footer">
-                        <div class="safari-price" style="margin: 0; text-align: left;">
-                            USD 700
-                            <small>per person sharing</small>
+                        <div class="route-price-container">
+                            <div class="route-price-season route-price-green">
+                                <span class="route-season-label">🌿 Green Season (Peak)</span>
+                                <div class="route-price-amount">USD 700</div>
+                                <div class="route-price-note">per person</div>
+                            </div>
+                            <div class="route-price-season route-price-lower">
+                                <span class="route-season-label">☀️ Lower Season</span>
+                                <div class="route-price-amount">USD 600</div>
+                                <div class="route-price-note">per person</div>
+                            </div>
                         </div>
                         <a href="great-northern-trail.html" class="btn btn-primary">View Full Itinerary</a>
                     </div>
@@ -1335,9 +1603,9 @@
                 <div class="route-card" data-category="predator extended">
                     <div class="route-header">
                         <h3 class="route-title">The Southern Predator Path</h3>
-                        <div class="route-duration">9 Nights / 10 Days</div>
+                        <div class="route-duration">10 Days / 9 Nights</div>
                     </div>
-                    <p class="route-description">Reverse the predator corridor — begin at Savuti, travel through Khwai's wildlife highway, and finish in the forests of Moremi.</p>
+                    <p class="route-description">Reverse the predator corridor — begin at Savuti, travel through Khwai's wildlife highway, and finish in the forests of Moremi. This 9-night safari offers a different perspective on Botswana's predator ecosystems, starting in the dry savannah and ending in the lush Delta.</p>
                     
                     <div class="route-destinations">
                         <span class="destination-tag">Savuti Marsh</span>
@@ -1366,9 +1634,17 @@
                     </div>
                     
                     <div class="route-footer">
-                        <div class="safari-price" style="margin: 0; text-align: left;">
-                            USD 700
-                            <small>per person sharing</small>
+                        <div class="route-price-container">
+                            <div class="route-price-season route-price-green">
+                                <span class="route-season-label">🌿 Green Season (Peak)</span>
+                                <div class="route-price-amount">USD 700</div>
+                                <div class="route-price-note">per person</div>
+                            </div>
+                            <div class="route-price-season route-price-lower">
+                                <span class="route-season-label">☀️ Lower Season</span>
+                                <div class="route-price-amount">USD 600</div>
+                                <div class="route-price-note">per person</div>
+                            </div>
                         </div>
                         <a href="southern-predator-path.html" class="btn btn-primary">View Full Itinerary</a>
                     </div>
@@ -1426,7 +1702,8 @@
                         <tr>
                             <th>Safari</th>
                             <th>Duration</th>
-                            <th>Price</th>
+                            <th>Green Season Price</th>
+                            <th>Lower Season Price</th>
                             <th>Destinations</th>
                             <th>Best For</th>
                             <th>Action</th>
@@ -1434,49 +1711,55 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Okavango Delta Safari</td>
-                            <td>6 Nights</td>
+                            <td>Emerald Waterways Expedition</td>
+                            <td>7 Days / 6 Nights</td>
                             <td class="highlight-cell">USD 700</td>
-                            <td>Okavango Delta</td>
-                            <td>Water-based safaris, birding</td>
-                            <td><a href="okavango-delta.html" class="btn" style="padding: 8px 15px; font-size: 14px;">Details</a></td>
+                            <td>USD 600</td>
+                            <td>Moremi, Xakanaxa, Khwai</td>
+                            <td>Delta waterways, wildlife-rich areas</td>
+                            <td><a href="emerald-waterways.html" class="btn" style="padding: 8px 15px; font-size: 14px;">Details</a></td>
                         </tr>
                         <tr>
-                            <td>Chobe National Park Safari</td>
-                            <td>6 Nights</td>
-                            <td class="highlight-cell">USD 700</td>
-                            <td>Chobe, Savuti</td>
-                            <td>Elephants, river cruises</td>
-                            <td><a href="chobe-national-park.html" class="btn" style="padding: 8px 15px; font-size: 14px;">Details</a></td>
+                            <td>Kalahari Dawn Discovery</td>
+                            <td>7 Days / 6 Nights</td>
+                            <td class="highlight-cell">USD 750</td>
+                            <td>USD 650</td>
+                            <td>Passarge, Deception, Piper Pans</td>
+                            <td>Desert landscapes, rare predators</td>
+                            <td><a href="kalahari-dawn.html" class="btn" style="padding: 8px 15px; font-size: 14px;">Details</a></td>
                         </tr>
                         <tr>
-                            <td>Central Kalahari Desert Safari</td>
-                            <td>6 Nights</td>
-                            <td>USD 750</td>
-                            <td>Central Kalahari</td>
-                            <td>Desert wildlife, San culture</td>
-                            <td><a href="central-kalahari.html" class="btn" style="padding: 8px 15px; font-size: 14px;">Details</a></td>
+                            <td>Rivers of the North Safari</td>
+                            <td>12 Days / 11 Nights</td>
+                            <td class="highlight-cell">USD 700</td>
+                            <td>USD 600</td>
+                            <td>Panhandle, Kwando, Savuti, Chobe</td>
+                            <td>Multi-river ecosystems, elephants</td>
+                            <td><a href="rivers-north.html" class="btn" style="padding: 8px 15px; font-size: 14px;">Details</a></td>
                         </tr>
                         <tr>
                             <td>The Hunters' Path Safari</td>
-                            <td>6 Nights</td>
+                            <td>7 Days / 6 Nights</td>
                             <td class="highlight-cell">USD 700</td>
+                            <td>USD 600</td>
                             <td>Moremi, Khwai</td>
-                            <td>Predator tracking, leopards</td>
+                            <td>Predator tracking, leopards, wild dogs</td>
                             <td><a href="hunters-path.html" class="btn" style="padding: 8px 15px; font-size: 14px;">Details</a></td>
                         </tr>
                         <tr>
                             <td>Great Northern Predator Trail</td>
-                            <td>9 Nights</td>
+                            <td>10 Days / 9 Nights</td>
                             <td class="highlight-cell">USD 700</td>
+                            <td>USD 600</td>
                             <td>Moremi, Khwai, Savuti</td>
                             <td>Complete predator corridor</td>
                             <td><a href="great-northern-trail.html" class="btn" style="padding: 8px 15px; font-size: 14px;">Details</a></td>
                         </tr>
                         <tr>
                             <td>Southern Predator Path</td>
-                            <td>9 Nights</td>
+                            <td>10 Days / 9 Nights</td>
                             <td class="highlight-cell">USD 700</td>
+                            <td>USD 600</td>
                             <td>Savuti, Khwai, Moremi</td>
                             <td>Reverse corridor, Savuti focus</td>
                             <td><a href="southern-predator-path.html" class="btn" style="padding: 8px 15px; font-size: 14px;">Details</a></td>
@@ -1484,7 +1767,7 @@
                         <tr>
                             <td>Custom Safari</td>
                             <td>Flexible</td>
-                            <td>On Request</td>
+                            <td colspan="2">On Request</td>
                             <td>Your Choice</td>
                             <td>Tailor-made experiences</td>
                             <td><a href="custom-safari.html" class="btn btn-primary" style="padding: 8px 15px; font-size: 14px;">Design</a></td>
@@ -1516,11 +1799,11 @@
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h4>What's the difference between classic and predator routes?</h4>
+                        <h4>What's the difference between signature and predator routes?</h4>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Classic safaris focus on specific regions (Delta, Chobe, Kalahari). Predator routes follow wildlife corridors between regions, with specialized guides and itineraries optimized for predator tracking and viewing. Both offer excellent wildlife experiences.</p>
+                        <p>Signature safaris focus on specific ecosystems (Delta waterways, desert landscapes, northern rivers). Predator routes follow wildlife corridors between regions, with specialized guides and itineraries optimized for predator tracking and viewing. Both offer excellent wildlife experiences.</p>
                     </div>
                 </div>
                 
@@ -1540,7 +1823,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Dry season (May-October) offers the best wildlife viewing as animals congregate around water sources. Green season (November-April) has lush landscapes, bird migrations, and fewer tourists. We operate year-round.</p>
+                        <p>Dry season (May-October) offers the best wildlife viewing as animals congregate around water sources. Green season (November-April) has lush landscapes, bird migrations, and fewer tourists. We operate year-round with dual-season pricing.</p>
                     </div>
                 </div>
                 
@@ -1573,7 +1856,7 @@
                 <div class="footer-column">
                     <h3>TRACKS ADVENTURE SAFARIS</h3>
                     <p>"Life is a safari, let's conquer it together"</p>
-                    <p>Providing authentic, premium safari experiences in Botswana's most spectacular wilderness areas since 2016. Specialists in predator-focused itineraries.</p>
+                    <p>Providing authentic, premium safari experiences in Botswana's most spectacular wilderness areas since 2016. Specialists in signature safari expeditions.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -1583,10 +1866,10 @@
                 </div>
                 
                 <div class="footer-column footer-links">
-                    <h3>Our Safari Routes</h3>
-                    <a href="okavango-delta.html">Okavango Delta Safari</a>
-                    <a href="chobe-national-park.html">Chobe National Park Safari</a>
-                    <a href="central-kalahari.html">Central Kalahari Safari</a>
+                    <h3>Signature Safari Routes</h3>
+                    <a href="emerald-waterways.html">Emerald Waterways Expedition</a>
+                    <a href="kalahari-dawn.html">Kalahari Dawn Discovery</a>
+                    <a href="rivers-north.html">Rivers of the North Safari</a>
                     <a href="hunters-path.html">The Hunters' Path</a>
                     <a href="great-northern-trail.html">Great Northern Predator Trail</a>
                     <a href="southern-predator-path.html">Southern Predator Path</a>
@@ -1605,7 +1888,7 @@
             
             <div class="copyright">
                 <p>&copy; 2025 TRACKS ADVENTURE SAFARIS & LODGES. All rights reserved.</p>
-                <p style="margin-top: 10px; font-size: 12px; opacity: 0.8;">Specialists in predator-focused safari experiences across Botswana's wildlife corridors.</p>
+                <p style="margin-top: 10px; font-size: 12px; opacity: 0.8;">Specialists in premium safari expeditions across Botswana's wilderness areas.</p>
             </div>
         </div>
     </footer>
