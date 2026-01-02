@@ -1862,8 +1862,282 @@
         </div>
     </footer>
 
-    <!-- Include the Universal Booking Modal (loaded from external file) -->
-    <div id="universalBookingModalContainer"></div>
+    <!-- ===== UNIVERSAL BOOKING MODAL ===== -->
+    <!-- This is the EXACT content from booking-modal.html -->
+    <div class="booking-modal-overlay" id="universalBookingModal">
+        <div class="booking-modal">
+            <!-- Header -->
+            <div class="modal-header">
+                <button class="close-modal" id="closeUniversalModal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 class="modal-title" id="modalSafariName">Book Your Safari Adventure</h2>
+                <p class="modal-subtitle" id="modalSafariSubtitle">Complete the form below to book your safari adventure</p>
+            </div>
+            
+            <!-- Content -->
+            <div class="modal-content">
+                <!-- Left: Booking Form -->
+                <div class="booking-form-section">
+                    <h3 class="form-section-title">Traveler Information</h3>
+                    
+                    <form id="universalBookingForm" action="process-booking.php" method="POST">
+                        <!-- Hidden fields for safari details -->
+                        <input type="hidden" name="safari_id" id="formSafariId" value="">
+                        <input type="hidden" name="safari_name" id="formSafariName" value="">
+                        <input type="hidden" name="safari_duration" id="formSafariDuration" value="">
+                        <input type="hidden" name="selected_season" id="formSelectedSeason" value="green">
+                        <input type="hidden" name="package_price" id="formPackagePrice" value="">
+                        
+                        <!-- Personal Information -->
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label required">First Name</label>
+                                <input type="text" name="first_name" class="form-input" placeholder="Enter your first name" required>
+                                <div class="error-message" id="firstNameError">Please enter your first name</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required">Last Name</label>
+                                <input type="text" name="last_name" class="form-input" placeholder="Enter your last name" required>
+                                <div class="error-message" id="lastNameError">Please enter your last name</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label required">Email Address</label>
+                                <input type="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                                <div class="error-message" id="emailError">Please enter a valid email address</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required">Phone Number</label>
+                                <input type="tel" name="phone" class="form-input" placeholder="+267 123 4567" required>
+                                <div class="error-message" id="phoneError">Please enter your phone number</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label required">Country</label>
+                                <input type="text" name="country" class="form-input" placeholder="Your country of residence" required>
+                                <div class="error-message" id="countryError">Please enter your country</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required">Number of Travelers</label>
+                                <select name="number_travelers" class="form-select" id="numberTravelersSelect" required>
+                                    <option value="">Select number</option>
+                                    <option value="1">1 Traveler</option>
+                                    <option value="2" selected>2 Travelers</option>
+                                    <option value="3">3 Travelers</option>
+                                    <option value="4">4 Travelers</option>
+                                    <option value="5">5 Travelers</option>
+                                    <option value="6">6 Travelers</option>
+                                    <option value="7">7 Travelers</option>
+                                    <option value="8">8 Travelers</option>
+                                    <option value="9+">9+ Travelers (Contact us)</option>
+                                </select>
+                                <div class="error-message" id="travelersError">Please select number of travelers</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Seasonal Price Selection -->
+                        <div class="season-price-selection">
+                            <h4 style="color: #4A2C1A; margin-bottom: 15px; font-size: 16px;">Select Your Season & Price</h4>
+                            <div class="season-options">
+                                <div class="season-option green selected" data-season="green">
+                                    <div class="season-name">🌿 Green Season</div>
+                                    <div class="season-price" id="greenSeasonPrice">USD 0</div>
+                                    <div style="font-size: 12px; color: #666; margin-top: 5px;">per person</div>
+                                </div>
+                                <div class="season-option lower" data-season="lower">
+                                    <div class="season-name">☀️ Lower Season</div>
+                                    <div class="season-price" id="lowerSeasonPrice">USD 0</div>
+                                    <div style="font-size: 12px; color: #666; margin-top: 5px;">per person</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Travel Dates -->
+                        <h3 class="form-section-title" style="margin-top: 30px;">Travel Dates</h3>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label required">Preferred Month</label>
+                                <select name="preferred_month" class="form-select" required>
+                                    <option value="">Select Month</option>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                    <option value="Flexible">Flexible Dates</option>
+                                </select>
+                                <div class="error-message" id="monthError">Please select preferred month</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label required">Preferred Year</label>
+                                <select name="preferred_year" class="form-select" required>
+                                    <option value="">Select Year</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026" selected>2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                </select>
+                                <div class="error-message" id="yearError">Please select preferred year</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Special Requests -->
+                        <div class="form-group">
+                            <label class="form-label">Special Requests or Notes</label>
+                            <textarea name="special_requests" class="form-textarea" placeholder="Dietary restrictions, mobility concerns, photography interests, or other requirements..."></textarea>
+                        </div>
+                        
+                        <!-- Deposit Calculation -->
+                        <div class="deposit-calc">
+                            <h4 style="color: #4A2C1A; margin-bottom: 15px; font-size: 16px;">Deposit Calculation (25% Required)</h4>
+                            <div class="deposit-row">
+                                <span>Season Selected:</span>
+                                <span id="calcSeason">Green Season</span>
+                            </div>
+                            <div class="deposit-row">
+                                <span>Price per Person:</span>
+                                <span id="calcPricePerPerson">USD 0</span>
+                            </div>
+                            <div class="deposit-row">
+                                <span>Number of Travelers:</span>
+                                <span id="calcTravelersCount">2</span>
+                            </div>
+                            <div class="deposit-row">
+                                <span>Total Package Cost:</span>
+                                <span id="calcTotalCost">USD 0</span>
+                            </div>
+                            <div class="deposit-row total">
+                                <span>25% Deposit Required:</span>
+                                <span id="calcDepositAmount">USD 0</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Terms Agreement -->
+                        <div class="terms-checkbox">
+                            <input type="checkbox" id="universalTermsAgreed" name="terms_agreed" required>
+                            <label for="universalTermsAgreed">
+                                I agree to the <a href="Tracks Safari terms and conditions.pdf" target="_blank" class="terms-link">Terms & Conditions</a> and understand that a 25% deposit is required to confirm the booking. Balance payment is due 60 days before departure.
+                            </label>
+                        </div>
+                        <div class="error-message" id="termsError" style="margin-top: -15px; margin-bottom: 20px;">You must agree to the terms & conditions</div>
+                        
+                        <!-- Form Buttons -->
+                        <div class="form-buttons">
+                            <button type="button" class="modal-btn btn-cancel" id="cancelUniversalBtn">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button type="submit" class="modal-btn btn-submit" id="submitUniversalBtn">
+                                <i class="fas fa-paper-plane"></i> Submit Booking Inquiry
+                                <div class="loading-spinner" id="universalSubmitSpinner"></div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Right: Package Summary -->
+                <div class="package-summary">
+                    <div class="summary-header">
+                        <h3 class="summary-title" id="summarySafariName">Safari Package</h3>
+                        
+                        <!-- Summary Pricing -->
+                        <div class="summary-pricing">
+                            <div class="summary-price-option green">
+                                <div class="summary-price-label">Green Season</div>
+                                <div class="summary-price-amount" id="summaryGreenPrice">USD 0</div>
+                                <div class="summary-price-note">per person</div>
+                            </div>
+                            <div class="summary-price-option lower">
+                                <div class="summary-price-label">Lower Season</div>
+                                <div class="summary-price-amount" id="summaryLowerPrice">USD 0</div>
+                                <div class="summary-price-note">per person</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-price-label" id="summarySafariDuration">Duration</div>
+                    </div>
+                    
+                    <div class="package-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value" id="summaryDuration">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Group Size</span>
+                            <span class="detail-value" id="summaryGroupSize">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Difficulty</span>
+                            <span class="detail-value" id="summaryDifficulty">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Best Time</span>
+                            <span class="detail-value" id="summaryBestTime">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Starting Point</span>
+                            <span class="detail-value" id="summaryStartPoint">-</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Hardcoded Features List (Same for all safaris) -->
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>All meals included</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Professional guide</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Luxury accommodation</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>All safari activities</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Park and concession fees</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Transport during safari</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Safety equipment</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Deposit Required -->
+                    <div class="deposit-required">
+                        <div class="deposit-label">Deposit Required to Confirm</div>
+                        <div class="deposit-amount" id="depositRequired">USD 0</div>
+                        <div class="deposit-note">25% of total package cost</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // ===== HUNTERS' PATH PAGE JAVASCRIPT =====
@@ -1952,34 +2226,472 @@
                 });
             });
 
-            // Load the universal booking modal HTML
-            function loadUniversalBookingModal() {
-                fetch('booking-modal.html')
-                    .then(response => response.text())
-                    .then(html => {
-                        document.getElementById('universalBookingModalContainer').innerHTML = html;
-                        
-                        // Load the booking modal JS after HTML is loaded
-                        const script = document.createElement('script');
-                        script.src = 'booking-modal.js';
-                        document.body.appendChild(script);
-                    })
-                    .catch(error => {
-                        console.error('Error loading booking modal:', error);
-                        // Fallback: If fetch fails, we'll add the modal manually
-                        const modalHTML = `<!-- UNIVERSAL BOOKING MODAL -->
-                        <div class="booking-modal-overlay" id="universalBookingModal">
-                            <!-- Modal content from booking-modal.html will be inserted here -->
-                        </div>`;
-                        document.getElementById('universalBookingModalContainer').innerHTML = modalHTML;
+            // Initialize the universal booking modal system
+            // This is the EXACT JavaScript from booking-modal.js
+            initBookingModal();
+
+            function initBookingModal() {
+                // DOM Elements
+                const bookingModal = document.getElementById('universalBookingModal');
+                const closeModalBtn = document.getElementById('closeUniversalModal');
+                const cancelBtn = document.getElementById('cancelUniversalBtn');
+                const bookingForm = document.getElementById('universalBookingForm');
+                const submitBtn = document.getElementById('submitUniversalBtn');
+                const submitSpinner = document.getElementById('universalSubmitSpinner');
+                
+                // Seasonal pricing elements
+                const seasonOptions = document.querySelectorAll('.season-option');
+                const formSelectedSeason = document.getElementById('formSelectedSeason');
+                const formPackagePrice = document.getElementById('formPackagePrice');
+                
+                // Form elements
+                const firstNameInput = document.querySelector('#universalBookingForm input[name="first_name"]');
+                const lastNameInput = document.querySelector('#universalBookingForm input[name="last_name"]');
+                const emailInput = document.querySelector('#universalBookingForm input[name="email"]');
+                const phoneInput = document.querySelector('#universalBookingForm input[name="phone"]');
+                const countryInput = document.querySelector('#universalBookingForm input[name="country"]');
+                const travelersSelect = document.getElementById('numberTravelersSelect');
+                const monthSelect = document.querySelector('#universalBookingForm select[name="preferred_month"]');
+                const yearSelect = document.querySelector('#universalBookingForm select[name="preferred_year"]');
+                const termsCheckbox = document.getElementById('universalTermsAgreed');
+                
+                // Package details elements
+                const modalSafariName = document.getElementById('modalSafariName');
+                const modalSafariSubtitle = document.getElementById('modalSafariSubtitle');
+                const summarySafariName = document.getElementById('summarySafariName');
+                const summarySafariDuration = document.getElementById('summarySafariDuration');
+                const summaryDuration = document.getElementById('summaryDuration');
+                const summaryGroupSize = document.getElementById('summaryGroupSize');
+                const summaryDifficulty = document.getElementById('summaryDifficulty');
+                const summaryBestTime = document.getElementById('summaryBestTime');
+                const summaryStartPoint = document.getElementById('summaryStartPoint');
+                
+                // Pricing elements
+                const greenSeasonPrice = document.getElementById('greenSeasonPrice');
+                const lowerSeasonPrice = document.getElementById('lowerSeasonPrice');
+                const summaryGreenPrice = document.getElementById('summaryGreenPrice');
+                const summaryLowerPrice = document.getElementById('summaryLowerPrice');
+                
+                // Deposit calculation elements
+                const calcSeason = document.getElementById('calcSeason');
+                const calcPricePerPerson = document.getElementById('calcPricePerPerson');
+                const calcTravelersCount = document.getElementById('calcTravelersCount');
+                const calcTotalCost = document.getElementById('calcTotalCost');
+                const calcDepositAmount = document.getElementById('calcDepositAmount');
+                const depositRequired = document.getElementById('depositRequired');
+                
+                // Hidden form fields
+                const formSafariId = document.getElementById('formSafariId');
+                const formSafariName = document.getElementById('formSafariName');
+                const formSafariDuration = document.getElementById('formSafariDuration');
+                
+                // Current safari data
+                let currentSafari = {
+                    id: '',
+                    name: '',
+                    priceGreen: 0,
+                    priceLower: 0,
+                    duration: '',
+                    groupSize: '',
+                    difficulty: '',
+                    bestTime: '',
+                    startPoint: ''
+                };
+                
+                // ===== EVENT LISTENERS SETUP =====
+                
+                // Close modal buttons
+                if (closeModalBtn) {
+                    closeModalBtn.addEventListener('click', hideBookingModal);
+                }
+                
+                if (cancelBtn) {
+                    cancelBtn.addEventListener('click', hideBookingModal);
+                }
+                
+                // Close modal when clicking outside
+                if (bookingModal) {
+                    bookingModal.addEventListener('click', function(e) {
+                        if (e.target === bookingModal) {
+                            hideBookingModal();
+                        }
                     });
+                }
+                
+                // Escape key closes modal
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && bookingModal.style.display === 'flex') {
+                        hideBookingModal();
+                    }
+                });
+                
+                // Seasonal option selection
+                if (seasonOptions) {
+                    seasonOptions.forEach(option => {
+                        option.addEventListener('click', function() {
+                            // Remove selected class from all options
+                            seasonOptions.forEach(opt => opt.classList.remove('selected'));
+                            
+                            // Add selected class to clicked option
+                            this.classList.add('selected');
+                            
+                            // Update form values
+                            const season = this.getAttribute('data-season');
+                            const price = season === 'green' ? currentSafari.priceGreen : currentSafari.priceLower;
+                            
+                            formSelectedSeason.value = season;
+                            formPackagePrice.value = price;
+                            
+                            // Update season display in calculation
+                            if (calcSeason) {
+                                calcSeason.textContent = season === 'green' ? 'Green Season' : 'Lower Season';
+                            }
+                            
+                            // Recalculate deposit
+                            calculateDeposit();
+                        });
+                    });
+                }
+                
+                // Calculate deposit when travelers change
+                if (travelersSelect) {
+                    travelersSelect.addEventListener('change', calculateDeposit);
+                }
+                
+                // Form submission
+                if (bookingForm) {
+                    bookingForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        if (!validateForm()) {
+                            return;
+                        }
+                        
+                        // Show loading state
+                        submitBtn.disabled = true;
+                        submitSpinner.style.display = 'block';
+                        submitBtn.innerHTML = '<div class="loading-spinner" id="universalSubmitSpinner"></div> Processing...';
+                        
+                        // Collect form data
+                        const formData = {
+                            safariId: formSafariId.value,
+                            safariName: formSafariName.value,
+                            firstName: document.querySelector('#universalBookingForm input[name="first_name"]').value,
+                            lastName: document.querySelector('#universalBookingForm input[name="last_name"]').value,
+                            email: document.querySelector('#universalBookingForm input[name="email"]').value,
+                            phone: document.querySelector('#universalBookingForm input[name="phone"]').value,
+                            country: document.querySelector('#universalBookingForm input[name="country"]').value,
+                            travelers: document.querySelector('#universalBookingForm select[name="number_travelers"]').value,
+                            season: formSelectedSeason.value,
+                            month: document.querySelector('#universalBookingForm select[name="preferred_month"]').value,
+                            year: document.querySelector('#universalBookingForm select[name="preferred_year"]').value,
+                            specialRequests: document.querySelector('#universalBookingForm textarea[name="special_requests"]').value,
+                            packagePrice: formPackagePrice.value,
+                            bookingDate: new Date().toISOString()
+                        };
+                        
+                        // Save form data to localStorage (for thank you page)
+                        localStorage.setItem('safariBookingData', JSON.stringify(formData));
+                        
+                        // Submit form to server
+                        setTimeout(() => {
+                            bookingForm.submit();
+                        }, 1500);
+                    });
+                }
+                
+                // Real-time validation
+                if (firstNameInput) firstNameInput.addEventListener('blur', validateField);
+                if (lastNameInput) lastNameInput.addEventListener('blur', validateField);
+                if (emailInput) emailInput.addEventListener('blur', validateField);
+                if (phoneInput) phoneInput.addEventListener('blur', validateField);
+                if (countryInput) countryInput.addEventListener('blur', validateField);
+                if (travelersSelect) travelersSelect.addEventListener('change', validateField);
+                if (monthSelect) monthSelect.addEventListener('change', validateField);
+                if (yearSelect) yearSelect.addEventListener('change', validateField);
+                if (termsCheckbox) termsCheckbox.addEventListener('change', validateField);
+                
+                // ===== UNIVERSAL BOOKING BUTTON HANDLER =====
+                
+                // Find ALL booking buttons on the page
+                const bookingButtons = document.querySelectorAll('.book-safari-btn');
+                
+                // Attach click handlers to all booking buttons
+                bookingButtons.forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Get safari data from data attributes
+                        const safariData = {
+                            id: this.getAttribute('data-safari-id') || '',
+                            name: this.getAttribute('data-safari-name') || 'Safari Package',
+                            priceGreen: parseFloat(this.getAttribute('data-price-green')) || 0,
+                            priceLower: parseFloat(this.getAttribute('data-price-lower')) || 0,
+                            duration: this.getAttribute('data-duration') || '',
+                            groupSize: this.getAttribute('data-group-size') || '',
+                            difficulty: this.getAttribute('data-difficulty') || '',
+                            bestTime: this.getAttribute('data-best-time') || '',
+                            startPoint: this.getAttribute('data-start-point') || ''
+                        };
+                        
+                        // Show modal with safari data
+                        showBookingModal(safariData);
+                    });
+                });
+                
+                // ===== CORE FUNCTIONS =====
+                
+                // Show modal with safari data
+                function showBookingModal(safariData) {
+                    if (!bookingModal) return;
+                    
+                    // Update current safari data
+                    currentSafari = { ...safariData };
+                    
+                    // Update modal content
+                    updateModalContent();
+                    
+                    // Show modal
+                    bookingModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Trigger animation
+                    setTimeout(() => {
+                        bookingModal.style.opacity = '1';
+                    }, 10);
+                    
+                    // Reset form
+                    resetForm();
+                    
+                    // Calculate initial deposit
+                    calculateDeposit();
+                }
+                
+                // Hide modal
+                function hideBookingModal() {
+                    if (!bookingModal) return;
+                    
+                    bookingModal.style.opacity = '0';
+                    setTimeout(() => {
+                        bookingModal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }, 300);
+                }
+                
+                // Update modal content with current safari data
+                function updateModalContent() {
+                    // Update modal header
+                    if (modalSafariName) modalSafariName.textContent = `Book ${currentSafari.name}`;
+                    if (modalSafariSubtitle) modalSafariSubtitle.textContent = `Complete your booking for the ${currentSafari.name} safari`;
+                    
+                    // Update summary section
+                    if (summarySafariName) summarySafariName.textContent = currentSafari.name;
+                    if (summarySafariDuration) summarySafariDuration.textContent = currentSafari.duration;
+                    if (summaryDuration) summaryDuration.textContent = currentSafari.duration;
+                    if (summaryGroupSize) summaryGroupSize.textContent = currentSafari.groupSize;
+                    if (summaryDifficulty) summaryDifficulty.textContent = currentSafari.difficulty;
+                    if (summaryBestTime) summaryBestTime.textContent = currentSafari.bestTime;
+                    if (summaryStartPoint) summaryStartPoint.textContent = currentSafari.startPoint;
+                    
+                    // Update pricing
+                    if (greenSeasonPrice) greenSeasonPrice.textContent = `USD ${currentSafari.priceGreen}`;
+                    if (lowerSeasonPrice) lowerSeasonPrice.textContent = `USD ${currentSafari.priceLower}`;
+                    if (summaryGreenPrice) summaryGreenPrice.textContent = `USD ${currentSafari.priceGreen}`;
+                    if (summaryLowerPrice) summaryLowerPrice.textContent = `USD ${currentSafari.priceLower}`;
+                    
+                    // Update hidden form fields
+                    if (formSafariId) formSafariId.value = currentSafari.id;
+                    if (formSafariName) formSafariName.value = currentSafari.name;
+                    if (formSafariDuration) formSafariDuration.value = currentSafari.duration;
+                    
+                    // Set default price to green season
+                    if (formPackagePrice) formPackagePrice.value = currentSafari.priceGreen;
+                }
+                
+                // Calculate deposit (25% of total)
+                function calculateDeposit() {
+                    if (!travelersSelect) return;
+                    
+                    // Get selected season and price
+                    const selectedSeason = formSelectedSeason.value;
+                    const pricePerPerson = selectedSeason === 'green' ? currentSafari.priceGreen : currentSafari.priceLower;
+                    const travelers = parseInt(travelersSelect.value) || 2;
+                    const totalCost = pricePerPerson * travelers;
+                    const deposit = totalCost * 0.25;
+                    
+                    // Update calculation display
+                    if (calcSeason) {
+                        calcSeason.textContent = selectedSeason === 'green' ? 'Green Season' : 'Lower Season';
+                    }
+                    if (calcPricePerPerson) calcPricePerPerson.textContent = `USD ${pricePerPerson.toLocaleString()}`;
+                    if (calcTravelersCount) calcTravelersCount.textContent = travelers;
+                    if (calcTotalCost) calcTotalCost.textContent = `USD ${totalCost.toLocaleString()}`;
+                    if (calcDepositAmount) calcDepositAmount.textContent = `USD ${deposit.toLocaleString()}`;
+                    if (depositRequired) depositRequired.textContent = `USD ${deposit.toLocaleString()}`;
+                }
+                
+                // Reset form to default state
+                function resetForm() {
+                    if (bookingForm) {
+                        bookingForm.reset();
+                        
+                        // Set default values
+                        if (travelersSelect) travelersSelect.value = '2';
+                        if (yearSelect) yearSelect.value = '2026';
+                        
+                        // Reset seasonal selection to green
+                        if (seasonOptions) {
+                            seasonOptions.forEach(opt => opt.classList.remove('selected'));
+                            const greenOption = document.querySelector('.season-option.green');
+                            if (greenOption) greenOption.classList.add('selected');
+                        }
+                        
+                        if (formSelectedSeason) formSelectedSeason.value = 'green';
+                        if (formPackagePrice) formPackagePrice.value = currentSafari.priceGreen;
+                        
+                        // Clear errors
+                        document.querySelectorAll('.error-message').forEach(error => {
+                            error.style.display = 'none';
+                        });
+                        document.querySelectorAll('.form-input.error, .form-select.error').forEach(input => {
+                            input.classList.remove('error');
+                        });
+                        
+                        // Enable submit button
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Booking Inquiry<div class="loading-spinner" id="universalSubmitSpinner"></div>';
+                        }
+                        if (submitSpinner) submitSpinner.style.display = 'none';
+                    }
+                }
+                
+                // Form validation
+                function validateForm() {
+                    let isValid = true;
+                    
+                    // Clear previous errors
+                    document.querySelectorAll('.error-message').forEach(error => {
+                        error.style.display = 'none';
+                    });
+                    document.querySelectorAll('.form-input.error, .form-select.error').forEach(input => {
+                        input.classList.remove('error');
+                    });
+                    
+                    // Validate first name
+                    if (!firstNameInput.value.trim()) {
+                        document.getElementById('firstNameError').style.display = 'block';
+                        firstNameInput.classList.add('error');
+                        isValid = false;
+                    }
+                    
+                    // Validate last name
+                    if (!lastNameInput.value.trim()) {
+                        document.getElementById('lastNameError').style.display = 'block';
+                        lastNameInput.classList.add('error');
+                        isValid = false;
+                    }
+                    
+                    // Validate email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+                        document.getElementById('emailError').style.display = 'block';
+                        emailInput.classList.add('error');
+                        isValid = false;
+                    }
+                    
+                    // Validate phone
+                    if (!phoneInput.value.trim()) {
+                        document.getElementById('phoneError').style.display = 'block';
+                        phoneInput.classList.add('error');
+                        isValid = false;
+                    }
+                    
+                    // Validate country
+                    if (!countryInput.value.trim()) {
+                        document.getElementById('countryError').style.display = 'block';
+                        countryInput.classList.add('error');
+                        isValid = false;
+                    }
+                    
+                    // Validate travelers
+                    if (!travelersSelect.value) {
+                        document.getElementById('travelersError').style.display = 'block';
+                        travelersSelect.classList.add('error');
+                        isValid = false;
+                    }
+                    
+                    // Validate month
+                    if (!monthSelect.value) {
+                        document.getElementById('monthError').style.display = 'block';
+                        monthSelect.classList.add('error');
+                        isValid = false;
+                    }
+                    
+                    // Validate year
+                    if (!yearSelect.value) {
+                        document.getElementById('yearError').style.display = 'block';
+                        yearSelect.classList.add('error');
+                        isValid = false;
+                    }
+                    
+                    // Validate terms
+                    if (!termsCheckbox.checked) {
+                        document.getElementById('termsError').style.display = 'block';
+                        isValid = false;
+                    }
+                    
+                    return isValid;
+                }
+                
+                // Validate individual field
+                function validateField(e) {
+                    const field = e.target;
+                    const fieldName = field.name || field.id;
+                    
+                    // Clear error for this field
+                    const errorId = fieldName === 'terms_agreed' ? 'termsError' : fieldName + 'Error';
+                    const errorElement = document.getElementById(errorId);
+                    if (errorElement) {
+                        errorElement.style.display = 'none';
+                        if (field.classList) {
+                            field.classList.remove('error');
+                        }
+                    }
+                    
+                    // Re-validate this field
+                    if (fieldName === 'first_name' && !field.value.trim()) {
+                        document.getElementById('firstNameError').style.display = 'block';
+                        field.classList.add('error');
+                    } else if (fieldName === 'last_name' && !field.value.trim()) {
+                        document.getElementById('lastNameError').style.display = 'block';
+                        field.classList.add('error');
+                    } else if (fieldName === 'email') {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!field.value.trim() || !emailRegex.test(field.value)) {
+                            document.getElementById('emailError').style.display = 'block';
+                            field.classList.add('error');
+                        }
+                    } else if (fieldName === 'phone' && !field.value.trim()) {
+                        document.getElementById('phoneError').style.display = 'block';
+                        field.classList.add('error');
+                    } else if (fieldName === 'country' && !field.value.trim()) {
+                        document.getElementById('countryError').style.display = 'block';
+                        field.classList.add('error');
+                    } else if (fieldName === 'number_travelers' && !field.value) {
+                        document.getElementById('travelersError').style.display = 'block';
+                        field.classList.add('error');
+                    } else if (fieldName === 'preferred_month' && !field.value) {
+                        document.getElementById('monthError').style.display = 'block';
+                        field.classList.add('error');
+                    } else if (fieldName === 'preferred_year' && !field.value) {
+                        document.getElementById('yearError').style.display = 'block';
+                        field.classList.add('error');
+                    } else if (fieldName === 'terms_agreed' && !field.checked) {
+                        document.getElementById('termsError').style.display = 'block';
+                    }
+                }
             }
-
-            // Initialize booking system
-            loadUniversalBookingModal();
-
-            // Note: The booking buttons will be handled by booking-modal.js
-            // All buttons with class "book-safari-btn" will automatically work
         });
     </script>
 </body>
