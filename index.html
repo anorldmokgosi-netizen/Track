@@ -43,6 +43,9 @@
             --light-beige: #F8F4E8;
             --gold: #C9A85E;
             --gold-light: #E2C98D;
+            --green-season: #2E7D32;
+            --green-season-light: #4CAF50;
+            --lower-season: #FF9800;
             --white: #FFFFFF;
             --black: #2C2C2C;
             --gray: #666666;
@@ -734,24 +737,84 @@
             gap: 8px;
         }
 
-        /* UPDATED SAFARI PRICE - Clean border instead of strikethrough */
-        .safari-price {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--dark-brown);
-            margin-bottom: 25px;
-            text-align: center;
-            position: relative;
-            display: block;
-            padding-top: 20px;
+        /* ===== DUAL SEASON PRICING STYLES ===== */
+        .price-container {
             border-top: 1px solid var(--light-gray);
+            padding-top: 20px;
+            margin-bottom: 25px;
         }
 
-        .safari-price span {
-            background-color: var(--white);
-            padding: 0 15px;
-            position: relative;
-            z-index: 1;
+        .price-season {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .price-season:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .price-green-season {
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(76, 175, 80, 0.05));
+            border-left: 4px solid var(--green-season);
+        }
+
+        .price-lower-season {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.05));
+            border-left: 4px solid var(--lower-season);
+        }
+
+        .season-icon {
+            font-size: 20px;
+            margin-right: 12px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .season-info {
+            flex: 1;
+        }
+
+        .season-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .price-green-season .season-label {
+            color: var(--green-season);
+        }
+
+        .price-lower-season .season-label {
+            color: var(--lower-season);
+        }
+
+        .price-amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .price-green-season .price-amount {
+            color: var(--green-season);
+        }
+
+        .price-lower-season .price-amount {
+            color: var(--lower-season);
+        }
+
+        .per-person {
+            font-size: 11px;
+            color: var(--gray);
+            margin-left: 5px;
+            font-weight: 400;
         }
 
         .view-all-container {
@@ -894,10 +957,76 @@
             border-top: 1px solid var(--light-gray);
         }
 
-        .route-price {
+        /* Route Price Container - Updated for dual pricing */
+        .route-price-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .route-price-season {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 160px;
+            transition: var(--transition);
+        }
+
+        .route-price-season:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .route-price-green {
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(76, 175, 80, 0.05));
+            border-left: 4px solid var(--green-season);
+        }
+
+        .route-price-lower {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.05));
+            border-left: 4px solid var(--lower-season);
+        }
+
+        .route-season-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .route-price-green .route-season-label {
+            color: var(--green-season);
+        }
+
+        .route-price-lower .route-season-label {
+            color: var(--lower-season);
+        }
+
+        .route-price-amount {
+            font-family: 'Playfair Display', serif;
             font-size: 24px;
             font-weight: 700;
-            color: var(--dark-brown);
+            margin-top: 5px;
+        }
+
+        .route-price-green .route-price-amount {
+            color: var(--green-season);
+        }
+
+        .route-price-lower .route-price-amount {
+            color: var(--lower-season);
+        }
+
+        .route-price-note {
+            font-size: 11px;
+            color: var(--gray);
+            margin-top: 3px;
         }
 
         /* ===== GALLERY SECTION ===== */
@@ -1280,6 +1409,16 @@
             .route-highlights {
                 grid-template-columns: 1fr;
             }
+            
+            .route-footer {
+                flex-direction: column;
+                gap: 25px;
+                align-items: flex-start;
+            }
+            
+            .route-price-container {
+                width: 100%;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1374,10 +1513,13 @@
                 font-size: 36px;
             }
             
-            .route-footer {
+            .safari-details {
                 flex-direction: column;
-                gap: 20px;
-                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .price-container {
+                padding-top: 15px;
             }
         }
 
@@ -1414,6 +1556,23 @@
             .safari-badge {
                 padding: 8px 15px;
                 font-size: 12px;
+            }
+            
+            .price-amount {
+                font-size: 20px;
+            }
+            
+            .route-price-amount {
+                font-size: 20px;
+            }
+            
+            .route-price-container {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .route-price-season {
+                min-width: 100%;
             }
         }
     </style>
@@ -1574,7 +1733,25 @@
                             <span><i class="fas fa-users"></i> Max 7 Guests</span>
                             <span><i class="fas fa-map-marker-alt"></i> Moremi → Xakanaxa → Khwai</span>
                         </div>
-                        <div class="safari-price"><span>From USD 700 per person</span></div>
+                        
+                        <!-- DUAL SEASON PRICING -->
+                        <div class="price-container">
+                            <div class="price-season price-green-season">
+                                <span class="season-icon">🌿</span>
+                                <div class="season-info">
+                                    <span class="season-label">Green Season (Peak)</span>
+                                    <div class="price-amount">USD 700 <span class="per-person">per person</span></div>
+                                </div>
+                            </div>
+                            <div class="price-season price-lower-season">
+                                <span class="season-icon">☀️</span>
+                                <div class="season-info">
+                                    <span class="season-label">Lower Season</span>
+                                    <div class="price-amount">USD 600 <span class="per-person">per person</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <a href="emerald-waterways.html" class="btn btn-primary" style="width: 100%;">View Safari Details</a>
                     </div>
                 </div>
@@ -1594,7 +1771,25 @@
                             <span><i class="fas fa-users"></i> Max 7 Guests</span>
                             <span><i class="fas fa-map-marker-alt"></i> Passarge → Deception → Piper</span>
                         </div>
-                        <div class="safari-price"><span>From USD 750 per person</span></div>
+                        
+                        <!-- DUAL SEASON PRICING -->
+                        <div class="price-container">
+                            <div class="price-season price-green-season">
+                                <span class="season-icon">🌿</span>
+                                <div class="season-info">
+                                    <span class="season-label">Green Season (Peak)</span>
+                                    <div class="price-amount">USD 750 <span class="per-person">per person</span></div>
+                                </div>
+                            </div>
+                            <div class="price-season price-lower-season">
+                                <span class="season-icon">☀️</span>
+                                <div class="season-info">
+                                    <span class="season-label">Lower Season</span>
+                                    <div class="price-amount">USD 650 <span class="per-person">per person</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <a href="kalahari-dawn.html" class="btn btn-primary" style="width: 100%;">View Safari Details</a>
                     </div>
                 </div>
@@ -1614,7 +1809,25 @@
                             <span><i class="fas fa-users"></i> Max 7 Guests</span>
                             <span><i class="fas fa-map-marker-alt"></i> Panhandle → Kwando → Savuti → Chobe</span>
                         </div>
-                        <div class="safari-price"><span>From USD 700 per person</span></div>
+                        
+                        <!-- DUAL SEASON PRICING -->
+                        <div class="price-container">
+                            <div class="price-season price-green-season">
+                                <span class="season-icon">🌿</span>
+                                <div class="season-info">
+                                    <span class="season-label">Green Season (Peak)</span>
+                                    <div class="price-amount">USD 700 <span class="per-person">per person</span></div>
+                                </div>
+                            </div>
+                            <div class="price-season price-lower-season">
+                                <span class="season-icon">☀️</span>
+                                <div class="season-info">
+                                    <span class="season-label">Lower Season</span>
+                                    <div class="price-amount">USD 600 <span class="per-person">per person</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <a href="rivers-north.html" class="btn btn-primary" style="width: 100%;">View Safari Details</a>
                     </div>
                 </div>
@@ -1680,7 +1893,18 @@
                 </div>
                 
                 <div class="route-footer">
-                    <div class="route-price">From USD 700 per person</div>
+                    <div class="route-price-container">
+                        <div class="route-price-season route-price-green">
+                            <span class="route-season-label">🌿 Green Season (Peak)</span>
+                            <div class="route-price-amount">USD 700</div>
+                            <div class="route-price-note">per person</div>
+                        </div>
+                        <div class="route-price-season route-price-lower">
+                            <span class="route-season-label">☀️ Lower Season</span>
+                            <div class="route-price-amount">USD 600</div>
+                            <div class="route-price-note">per person</div>
+                        </div>
+                    </div>
                     <a href="hunters-path.html" class="btn btn-primary">View Full Itinerary</a>
                 </div>
             </div>
@@ -1732,7 +1956,18 @@
                 </div>
                 
                 <div class="route-footer">
-                    <div class="route-price">From USD 700 per person</div>
+                    <div class="route-price-container">
+                        <div class="route-price-season route-price-green">
+                            <span class="route-season-label">🌿 Green Season (Peak)</span>
+                            <div class="route-price-amount">USD 700</div>
+                            <div class="route-price-note">per person</div>
+                        </div>
+                        <div class="route-price-season route-price-lower">
+                            <span class="route-season-label">☀️ Lower Season</span>
+                            <div class="route-price-amount">USD 600</div>
+                            <div class="route-price-note">per person</div>
+                        </div>
+                    </div>
                     <a href="great-northern-trail.html" class="btn btn-primary">View Full Itinerary</a>
                 </div>
             </div>
@@ -1784,7 +2019,18 @@
                 </div>
                 
                 <div class="route-footer">
-                    <div class="route-price">From USD 700 per person</div>
+                    <div class="route-price-container">
+                        <div class="route-price-season route-price-green">
+                            <span class="route-season-label">🌿 Green Season (Peak)</span>
+                            <div class="route-price-amount">USD 700</div>
+                            <div class="route-price-note">per person</div>
+                        </div>
+                        <div class="route-price-season route-price-lower">
+                            <span class="route-season-label">☀️ Lower Season</span>
+                            <div class="route-price-amount">USD 600</div>
+                            <div class="route-price-note">per person</div>
+                        </div>
+                    </div>
                     <a href="southern-predator-path.html" class="btn btn-primary">View Full Itinerary</a>
                 </div>
             </div>
